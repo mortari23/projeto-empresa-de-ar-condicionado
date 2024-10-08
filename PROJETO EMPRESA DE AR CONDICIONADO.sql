@@ -27,3 +27,11 @@ CREATE TABLE funcionario (
  telefone_funcionario varchar(15),
  endereco_funcionario nvarchar(100)
  );
+
+ alter table clientes add CEP varchar(15), bairro nvarchar(30);
+ alter table clientes add Numero_casa varchar(10);
+ alter table clientes add complemento_cliente nvarchar(100);
+
+ alter table funcionario add CEP varchar(15), bairro nvarchar(30), numero_funcionario varchar(10);
+ alter table funcionario add complemento_funcionario nvarchar(100);
+ 
