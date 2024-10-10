@@ -49,4 +49,11 @@ insert into funcionario (funcionarioID,nome_funcionario,cpf_funcionario,telefone
  from clientes c
  inner join servico p on c.clienteID = p.clienteID
  inner join funcionario f on p.funcionarioID = f.funcionarioID
+
+ alter table clientes drop column CEP,bairro;
+ alter table funcionario drop column CEP,bairro;
+
+ alter table clientes add CEP_cliente varchar(15), bairro_cliente varchar(50);
+ alter table funcionario add CEP_funcionario varchar(15), bairro_funcionario varchar(50);
+ 
  
