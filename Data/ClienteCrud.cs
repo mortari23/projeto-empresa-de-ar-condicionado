@@ -20,8 +20,8 @@ namespace Data
 
         public void IncluirCliente (Cliente cliente)
         {
-            const string query = @"INSERT INTO clientes (nome_cliente,telefone_cliente,cpf_cliente,endereco_cliente,gmail_cliente,cidade_cliente,CEP,bairro,Numero_casa,compelemento_cliente
-                                 Values(@Nome_cliente,@Telefone_cliente,@CPF_cliente,@Endereco_cliente,@Gmail_cliente,@Cidade_cliente,@CEP,@Bairro,@Numero_casa,@Compelemento_cliente)";
+
+            const string query = @"INSERT INTO clientes (nome_cliente,telefone_cliente,cpf_cliente,endereco_cliente,gmail_cliente,cidade_cliente,CEP_cliente,bairro_cliente,Numero_casa,complemento_cliente) Values (@Nome_cliente,@Telefone_cliente,@CPF_cliente,@Endereco_cliente,@Gmail_cliente,@Cidade_cliente,@CEP_cliente,@Bairro_cliente,@Numero_casa,@Complemento_cliente)";
 
             try
             {
@@ -29,7 +29,7 @@ namespace Data
                 using (var comandoSql =new SqlCommand(query, conexaoBd))
                 {
                     comandoSql.Parameters.AddWithValue("@Nome_cliente", cliente.nome_cliente);
-                    comandoSql.Parameters.AddWithValue("@Teleone_cliente", cliente.telefone_cliente);
+                    comandoSql.Parameters.AddWithValue("@Telefone_cliente", cliente.telefone_cliente) ;
                     comandoSql.Parameters.AddWithValue("@CPF_cliente", cliente.cpf_clienete);
                     comandoSql.Parameters.AddWithValue("@Endereco_cliente", cliente.endereco_cliente);
                     comandoSql.Parameters.AddWithValue("@Gmail_cliente", cliente.gmail_cliente);
@@ -98,17 +98,18 @@ namespace Data
         }
         public void AlterarCliente (Cliente cliente)
         {
-            const string query = @"upate clientes set" +
-                                 "nome_cliente =@Nome_cliente" +
-                                 "telefone_cliente =@Telefone_cliente" +
-                                 "cpf_cliente =@CPF_cliente" +
-                                 "endereco_cliente =@Endereco_cliente" +
-                                 "gmai_cliente =@Gmail_cliente" +
-                                 "cidade_cliente =@Cidade_cliente" +
-                                 "CEP =CEP" +
-                                 "bairro =Bairro" +
-                                 "numero_casa=@Numero_casa" +
-                                 "complemento_cliente=@Complemento_cliente";
+            const string query = @"upate clientes set " +
+                                 "nome_cliente = @Nome_cliente, " +
+                                 "telefone_cliente = @Telefone_cliente, " +
+                                 "cpf_cliente = @CPF_cliente, " +
+                                 "endereco_cliente = @Endereco_cliente, " +
+                                 "gmai_cliente = @Gmail_cliente, " +
+                                 "cidade_cliente = @Cidade_cliente, " +
+                                 "CEP_cliente = @CEP_cliente, " +
+                                 "bairro_cliente = @Bairro_cliente, " +
+                                 "numero_casa = @Numero_casa, " +
+                                 "complemento_cliente = @Complemento_cliente " +
+                                 "where clienteID = @codigoCliente ";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -120,8 +121,8 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Endereco_cliente", cliente.endereco_cliente);
                     comandoSql.Parameters.AddWithValue("@Gmail_cliente", cliente.gmail_cliente);
                     comandoSql.Parameters.AddWithValue("@Cidade_cliente", cliente.cidade_cliente);
-                    comandoSql.Parameters.AddWithValue("@CEP", cliente.CEP_cliente);
-                    comandoSql.Parameters.AddWithValue("@Bairro", cliente.bairro_cliente);
+                    comandoSql.Parameters.AddWithValue("@CEP_cliente", cliente.CEP_cliente);
+                    comandoSql.Parameters.AddWithValue("@Bairro_cliente", cliente.bairro_cliente);
                     comandoSql.Parameters.AddWithValue("@Numero_casa", cliente.numero_casa);
                     comandoSql.Parameters.AddWithValue("@Complemento_cliente", cliente.complemento_cliente);
 
@@ -158,8 +159,8 @@ namespace Data
                                 endereco_cliente = reader["cpf_cliente"].ToString(),
                                 gmail_cliente = reader["gmail_cliente"].ToString(),
                                 cidade_cliente = reader["cidade_cliente"].ToString(),
-                                CEP_cliente = reader["CEP"].ToString(),
-                                bairro_cliente = reader["bairro"].ToString(),
+                                CEP_cliente = reader["CEP_cliente"].ToString(),
+                                bairro_cliente = reader["bairro_cliente"].ToString(),
                                 numero_casa = reader["numero_casa"].ToString(),
                                 complemento_cliente = reader["complemento_cliente"].ToString()
                             };

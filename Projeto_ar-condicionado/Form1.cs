@@ -21,9 +21,9 @@ namespace Projeto_ar_condicionado
 
         public form1()
         {
-            InitializeComponent();
-            ListarClientes();
-            //ConfigurarDataGrid();
+           InitializeComponent();
+           ListarClientes();
+           ConfigurarDataGrid();
 
         }
 
@@ -31,10 +31,27 @@ namespace Projeto_ar_condicionado
         private void ListarClientes()
         {
             ClienteCRUD clientecrud = new ClienteCRUD(_conexao);
+            funcionarioCrud funcionarioCrud = new funcionarioCrud(_conexao);
 
-            string busca = txb_buscar_cadastro.Text.ToString();
-            DataSet dsCliente = new DataSet();
-            dsCliente = clientecrud.BuscarCliente(busca);
+           /// if (comboBox_buscar_tipo.Text == "Cliente")
+            {
+                string busca = txb_buscar_cadastro.Text.ToString();
+                DataSet dsCliente = new DataSet();
+                dsCliente = clientecrud.BuscarCliente(busca);
+
+                dgv_cliente.DataSource = dsCliente;
+                dgv_cliente.DataMember = "clientes";
+            }
+           //else if (comboBox_buscar_tipo.Text == "Funcionario")
+           // {
+               // string busca = txb_buscar_cadastro.Text.ToString();
+             //   DataSet dsfuncionario = new DataSet();
+           //     dsfuncionario = funcionarioCrud.BuscarFuncionario(busca);
+            //
+            //    dgv_cliente.DataSource = dsfuncionario;
+            //    dgv_cliente.DataMember = "funcionario";
+           // }
+                 
         }
 
 
@@ -122,24 +139,23 @@ namespace Projeto_ar_condicionado
         private void button2_Click(object sender, EventArgs e)
         {
             Cliente cliente = new Cliente();
-
             ClienteCRUD clientecrud = new ClienteCRUD(_conexao);
 
-           
-               
+            funcionario funcionario = new funcionario();
+            funcionarioCrud funcionariocrud = new Data.funcionarioCrud(_conexao);
 
-            
+           if (comboBox_tipo.Text == "Cliente")
+           { 
 
+             if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
+               || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") || (txb_gmail.Text == "")
+               || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
+             {
+                MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+             else
+             {
 
-            if ((txb_nome.Text=="") || (comboBox_tipo.Text=="") || (maskedTextBox_numero.Text == "" ) 
-              || (maskedTextBox_telefone.Text=="") || (maskedTextBox_cpf.Text=="") || (txb_gmail.Text=="") 
-              || (txb_rua.Text=="") || (txb_bairro.Text == "")|| (txb_cidade.Text== "")) 
-           {                             
-                MessageBox.Show("algum campo necessario esta vazio","erro",MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-           else
-           {
-               
                 // Try = tente
                 // Atribui os valores dos campos no objeto Cliente
                 cliente.nome_cliente = txb_nome.Text;
@@ -153,15 +169,73 @@ namespace Projeto_ar_condicionado
                 cliente.cidade_cliente = txb_cidade.Text;
                 cliente.telefone_cliente = maskedTextBox_telefone.Text;
 
+
+
                 // Executa o comando de inclusão do cliente 
                 clientecrud.IncluirCliente(cliente);
 
                 // Exibe uma Mensagem se deu certo
                 MessageBox.Show("Cadastro bem sucedido", "cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Fecha a Tela
-                this.Close();
+                    txb_bairro.Clear();
+                    txb_cidade.Clear();
+                    txb_nome.Clear();
+                    txb_gmail.Clear();
+                    txb_rua.Clear();
+                    txb_cidade.Clear();
+                    txb_complemento.Clear();
+                    txb_bairro.Clear();
+                    maskedTextBox_cep.Clear();
+                    maskedTextBox_telefone.Clear();
+                    maskedTextBox_cpf.Clear();
+                    maskedTextBox_numero.Clear();
+                    comboBox_tipo.SelectedIndex = -1;
+
+                }
+           }
+           else if (comboBox_tipo.Text == "Funcionario")
+           {
+                if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
+               || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") || (txb_gmail.Text == "")
+               || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
+                {
+                    MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    funcionario.nome_funcionario = txb_nome.Text;
+                    funcionario.endereco_funcionario = txb_rua.Text;
+                    funcionario.cpf_funcionario = maskedTextBox_cpf.Text;
+                    funcionario.CEP_funcionario = maskedTextBox_cep.Text;
+                    funcionario.bairro_funcionario = txb_bairro.Text;
+                    funcionario.numero_funcionario = maskedTextBox_numero.Text;
+                    funcionario.complemento_funcionario = txb_complemento.Text;
+                    funcionario.cidade_funcionario = txb_cidade.Text;
+                    funcionario.telefone_funcionario = maskedTextBox_telefone.Text;
+                    funcionario.cidade_funcionario = txb_cidade.Text;
+
+                    funcionariocrud.IncluirFuncionario(funcionario);
+
+                    MessageBox.Show("Cadastro bem sucedido", "cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    txb_bairro.Clear();
+                    txb_cidade.Clear();
+                    txb_nome.Clear();
+                    txb_gmail.Clear();
+                    txb_rua.Clear();
+                    txb_cidade.Clear();
+                    txb_complemento.Clear();
+                    txb_bairro.Clear();
+                    maskedTextBox_cep.Clear();
+                    maskedTextBox_telefone.Clear();
+                    maskedTextBox_cpf.Clear();
+                    maskedTextBox_numero.Clear();
+                    comboBox_tipo.SelectedIndex = -1 ;
+                }
+
+
             }
+        
         }
 
         private void btn_limpar_Click(object sender, EventArgs e)
@@ -197,13 +271,12 @@ namespace Projeto_ar_condicionado
                 txb_rua.Text = dados.Tables[0].Rows[0]["logradouro"].ToString();
                 txb_bairro.Text = dados.Tables[0].Rows[0]["bairro"].ToString();
                 txb_cidade.Text = dados.Tables[0].Rows[0]["localidade"].ToString();
-               
-                
+
+
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception();
             }
         }
 
@@ -282,7 +355,7 @@ namespace Projeto_ar_condicionado
 
             dgv_cliente.Columns["endereco_cliente"].HeaderText = "Endereço";
 
-            dgv_cliente.Columns["teleone_cliente"].HeaderText = "Tel";
+            dgv_cliente.Columns["telefone_cliente"].HeaderText = "Tel";
 
             dgv_cliente.Columns["nome_cliente"].HeaderText = "Nome Completo";
 
@@ -290,15 +363,15 @@ namespace Projeto_ar_condicionado
             
             dgv_cliente.Columns["gmail_cliente"].HeaderText= "Email";
 
-            dgv_cliente.Columns["CEP"].HeaderText = "CEP";
+            dgv_cliente.Columns["CEP_cliente"].HeaderText = "CEP";
 
             dgv_cliente.Columns["cidade_cliente"].HeaderText = "Cidade";
 
-            dgv_cliente.Columns["bairro"].HeaderText = "Bairro";
+            dgv_cliente.Columns["bairro_cliente"].HeaderText = "Bairro";
 
             dgv_cliente.Columns["Numero_casa"].HeaderText = "Nº";
 
-            dgv_cliente.Columns["compelemento_cliente"].HeaderText = "Complemento";          
+            dgv_cliente.Columns["complemento_cliente"].HeaderText = "Complemento";          
 
         }
 
@@ -306,7 +379,7 @@ namespace Projeto_ar_condicionado
         {
             if (e.KeyCode == Keys.Enter)
             {
-               btn_buscar_Click(sender, e);
+               btn_buscar_cadastro_Click(sender, e);
             }
         }
 
@@ -334,17 +407,27 @@ namespace Projeto_ar_condicionado
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-           // if (dgv_cliente.SelectedRows.Count > 0)
-            //{
-                //int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
-               // var frm_Alterar_Cadastro = new = frm_servico_contrato(codigo);
-               // frm_Alterar_Cadastro.ShowDialog();
-              //  ListarClientes();
-           // }
-           // else
-            //{
+           if (dgv_cliente.SelectedRows.Count > 0)
+            {
+                int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
+                var frm_Alterar_Cadastro = new frm_alterar_cadastro(codigo);
+                frm_Alterar_Cadastro.ShowDialog();
+                ListarClientes();
+           }
+           else
+           {
                 MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           // }
+           }
+        }
+
+        private void dgv_cliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBox_buscar_tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

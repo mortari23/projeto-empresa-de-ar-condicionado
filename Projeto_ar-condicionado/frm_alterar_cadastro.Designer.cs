@@ -54,6 +54,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txb_codigo = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.btn_salvar = new System.Windows.Forms.Button();
             this.groupBox_endereço.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,9 +214,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(306, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.Size = new System.Drawing.Size(42, 17);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Gmail";
+            this.label5.Text = "Email";
             // 
             // maskedTextBox_cpf
             // 
@@ -297,7 +298,7 @@
             // 
             // txb_codigo
             // 
-            this.txb_codigo.Location = new System.Drawing.Point(78, 363);
+            this.txb_codigo.Location = new System.Drawing.Point(85, 365);
             this.txb_codigo.Name = "txb_codigo";
             this.txb_codigo.ReadOnly = true;
             this.txb_codigo.Size = new System.Drawing.Size(100, 20);
@@ -313,11 +314,22 @@
             this.label12.TabIndex = 23;
             this.label12.Text = "Codigo";
             // 
+            // btn_salvar
+            // 
+            this.btn_salvar.Location = new System.Drawing.Point(466, 366);
+            this.btn_salvar.Name = "btn_salvar";
+            this.btn_salvar.Size = new System.Drawing.Size(129, 25);
+            this.btn_salvar.TabIndex = 24;
+            this.btn_salvar.Text = "alterar";
+            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click_1);
+            // 
             // frm_alterar_cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 400);
+            this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txb_codigo);
             this.Controls.Add(this.groupBox_endereço);
@@ -368,5 +380,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txb_codigo;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btn_salvar;
     }
 }

@@ -57,13 +57,14 @@
             this.txb_nome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage_consulta = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dgv_cliente = new System.Windows.Forms.DataGridView();
             this.comboBox_buscar_tipo = new System.Windows.Forms.ComboBox();
             this.txb_buscar_cadastro = new System.Windows.Forms.TextBox();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_buscar_cadastro = new System.Windows.Forms.Button();
             this.btn_fechar = new System.Windows.Forms.Button();
-            this.dgv_cliente = new System.Windows.Forms.DataGridView();
             this.tabControl_busca.SuspendLayout();
             this.tabPage_cadastro.SuspendLayout();
             this.groupBox_endereço.SuspendLayout();
@@ -287,9 +288,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(310, 76);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.Size = new System.Drawing.Size(42, 17);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Gmail";
+            this.label5.Text = "Email";
             // 
             // maskedTextBox_cpf
             // 
@@ -375,6 +376,7 @@
             // 
             // tabPage_consulta
             // 
+            this.tabPage_consulta.Controls.Add(this.label12);
             this.tabPage_consulta.Controls.Add(this.dgv_cliente);
             this.tabPage_consulta.Controls.Add(this.comboBox_buscar_tipo);
             this.tabPage_consulta.Controls.Add(this.txb_buscar_cadastro);
@@ -389,6 +391,24 @@
             this.tabPage_consulta.Text = "Consultar cadastros";
             this.tabPage_consulta.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(304, 23);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(28, 13);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Tipo";
+            // 
+            // dgv_cliente
+            // 
+            this.dgv_cliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_cliente.Location = new System.Drawing.Point(-4, 72);
+            this.dgv_cliente.Name = "dgv_cliente";
+            this.dgv_cliente.Size = new System.Drawing.Size(639, 321);
+            this.dgv_cliente.TabIndex = 7;
+            this.dgv_cliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_cliente_CellContentClick);
+            // 
             // comboBox_buscar_tipo
             // 
             this.comboBox_buscar_tipo.FormattingEnabled = true;
@@ -399,6 +419,7 @@
             this.comboBox_buscar_tipo.Name = "comboBox_buscar_tipo";
             this.comboBox_buscar_tipo.Size = new System.Drawing.Size(121, 21);
             this.comboBox_buscar_tipo.TabIndex = 6;
+            this.comboBox_buscar_tipo.SelectedIndexChanged += new System.EventHandler(this.comboBox_buscar_tipo_SelectedIndexChanged);
             // 
             // txb_buscar_cadastro
             // 
@@ -447,14 +468,6 @@
             this.btn_fechar.Text = "Fechar";
             this.btn_fechar.UseVisualStyleBackColor = true;
             this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
-            // 
-            // dgv_cliente
-            // 
-            this.dgv_cliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_cliente.Location = new System.Drawing.Point(-4, 72);
-            this.dgv_cliente.Name = "dgv_cliente";
-            this.dgv_cliente.Size = new System.Drawing.Size(639, 321);
-            this.dgv_cliente.TabIndex = 7;
             // 
             // form1
             // 
@@ -517,6 +530,7 @@
         private System.Windows.Forms.TextBox txb_buscar_cadastro;
         private System.Windows.Forms.ComboBox comboBox_buscar_tipo;
         private System.Windows.Forms.DataGridView dgv_cliente;
+        private System.Windows.Forms.Label label12;
     }
 }
 

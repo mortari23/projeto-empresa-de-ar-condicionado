@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal class funcionarioCrud
+    public class funcionarioCrud
     {
         private readonly string _conexao;
 
@@ -18,8 +19,8 @@ namespace Data
 
         public void IncluirFuncionario(funcionario funcionario) 
         {
-            const string query = @"INSERT INTO funcionario (nome_funcionario,telefone_funcionario,cpf_funcionario,endereco_funcionario,gmail_funcionario,cidade_funcionario,CEP,bairro,numero_funcionario,compelemento_funcionario
-                                 Values(@Nome_funcionario,@Telefone_funcionario,@CPF_funcionario,@Endereco_funcionario,@Gmail_funcionario,@Cidade_funcionario,@CEP,@Bairro,@numero_funcionario,@Compelemento_funcionario)";
+            const string query = @"INSERT INTO funcionario (nome_funcionario,telefone_funcionario,cpf_funcionario,endereco_funcionario,CEP_funcionario,bairro_funcionario,numero_funcionario,complemento_funcionario,cidade_funcionario)
+                                 Values(@Nome_funcionario,@Telefone_funcionario,@CPF_funcionario,@Endereco_funcionario,@CEP_funcionario,@Bairro_funcionario,@numero_funcionario,@Complemento_funcionario,@Cidade_funcionario)";
 
             try
             {
@@ -27,13 +28,14 @@ namespace Data
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
                     comandoSql.Parameters.AddWithValue("@Nome_funcionario", funcionario.nome_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Teleone_funcionario", funcionario.telfone_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Telefone_funcionario", funcionario.telefone_funcionario);
                     comandoSql.Parameters.AddWithValue("@CPF_funcionario", funcionario.cpf_funcionario);
                     comandoSql.Parameters.AddWithValue("@Endereco_funcionario", funcionario.endereco_funcionario);
-                    comandoSql.Parameters.AddWithValue("@CEP", funcionario.CEP_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Bairro", funcionario.bairro_funcionario);
+                    comandoSql.Parameters.AddWithValue("@CEP_funcionario", funcionario.CEP_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Bairro_funcionario", funcionario.bairro_funcionario);
                     comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
                     comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
@@ -42,6 +44,34 @@ namespace Data
             catch (Exception ex)
             {
                 throw new Exception("ERROOOO !!!!!!!", ex);
+            }
+        }
+        public DataSet BuscarFuncionario(string pesquisa = "")
+        {
+            const string query = "Select * From funcionario Where nome_funcionario Like @Pesquisa";
+
+            try
+            {
+                using (var conexaoBd = new SqlConnection(_conexao))
+
+                using (var comando = new SqlCommand(query, conexaoBd))
+
+                using (var adaptador = new SqlDataAdapter(comando))
+                {
+                    string parametroPesquisar = $"%{pesquisa}%";
+                    comando.Parameters.AddWithValue("@Pesquisa", parametroPesquisar);
+
+                    conexaoBd.Open();
+
+                    var dsFuncionario = new DataSet();
+                    adaptador.Fill(dsFuncionario, "funcionario");
+                    return dsFuncionario;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro em buscar Funcionario{ex.Message}", ex);
             }
         }
         public void ExcluirFuncionario(int codigofuncionario)
@@ -65,27 +95,29 @@ namespace Data
         public void AlterarFuncionario(funcionario funcionario)
         {
             const string query = @"upate funcionario set" +
-                                 "nome_funcionario =@Nome_funcionario" +
-                                 "telefone_funcionario =@Telefone_funcionario" +
-                                 "cpf_funcionario =@CPF_funcionario" +
-                                 "endereco_funcionario =@Endereco_funcionario" +     
-                                 "CEP =CEP" +
-                                 "bairro =Bairro" +
+                                 "nome_funcionario=@Nome_funcionario" +
+                                 "telefone_funcionario=@Telefone_funcionario" +
+                                 "cpf_funcionario=@CPF_funcionario" +
+                                 "endereco_funcionario =@Endereco_funcionario" +
+                                 "CEP_funcionario=@CEP_funcionario" +
+                                 "bairro_funcionario=@Bairro_funcionario" +
                                  "numero_funcionario=@Numero_funcionario" +
-                                 "complemento_funcionario=@Complemento_funcionario";
+                                 "complemento_funcionario=@Complemento_funcionario" +
+                                 "cidade_funconario=@Cidade_funcionario";
+
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
-                    comandoSql.Parameters.AddWithValue("@Nome_cliente", funcionario.nome_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Teleone_cliente", funcionario.telfone_funcionario);
-                    comandoSql.Parameters.AddWithValue("@CPF_cliente", funcionario.cpf_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Endereco_cliente", funcionario.endereco_funcionario);
-                    comandoSql.Parameters.AddWithValue("@CEP", funcionario.CEP_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Bairro", funcionario.bairro_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Numero_casa", funcionario.numero_funcionario);
-                    comandoSql.Parameters.AddWithValue("@Complemento_cliente", funcionario.complemento_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Nome_funcionario", funcionario.nome_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Telefone_funcionario", funcionario.telefone_funcionario);
+                    comandoSql.Parameters.AddWithValue("@CPF_funcionario", funcionario.cpf_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Endereco_funcionario", funcionario.endereco_funcionario);
+                    comandoSql.Parameters.AddWithValue("@CEP_funcionario", funcionario.CEP_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Bairro_funcionario", funcionario.bairro_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
@@ -116,7 +148,7 @@ namespace Data
                             {
                                 funcionarioID = Convert.ToInt32(reader["funcionarioID"]),
                                 nome_funcionario = reader["nome_funcionario"].ToString(),
-                                telfone_funcionario = reader["telefone_funcionario"].ToString(),
+                                telefone_funcionario = reader["telefone_funcionario"].ToString(),
                                 cpf_funcionario = reader["cpf_funcionario"].ToString(),
                                 endereco_funcionario = reader["cpf_funcionario"].ToString(),
                                 CEP_funcionario = reader["CEP"].ToString(),
