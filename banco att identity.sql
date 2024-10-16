@@ -47,7 +47,8 @@ CREATE TABLE funcionario (
  alter table clientes add CEP_cliente varchar(15), bairro_cliente varchar(50);
  alter table funcionario add CEP_funcionario varchar(15), bairro_funcionario varchar(50);
 
-
-
-
+ select * from funcionario
+ alter table funcionario add cidade_funcionario nvarchar(100);
+ 
+ 
  

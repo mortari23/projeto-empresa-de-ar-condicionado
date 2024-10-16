@@ -156,7 +156,7 @@ namespace Data
                                 nome_cliente = reader["nome_Cliente"].ToString(),
                                 telefone_cliente = reader["telefone_cliente"].ToString(),
                                 cpf_clienete = reader["cpf_cliente"].ToString(),
-                                endereco_cliente = reader["cpf_cliente"].ToString(),
+                                endereco_cliente = reader["endereco_cliente"].ToString(),
                                 gmail_cliente = reader["gmail_cliente"].ToString(),
                                 cidade_cliente = reader["cidade_cliente"].ToString(),
                                 CEP_cliente = reader["CEP_cliente"].ToString(),
