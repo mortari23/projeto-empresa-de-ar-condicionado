@@ -22,7 +22,7 @@ namespace Projeto_ar_condicionado
         public form1()
         {
            InitializeComponent();
-           ListarClientes();
+           
            ConfigurarDataGrid();
 
         }
@@ -31,27 +31,30 @@ namespace Projeto_ar_condicionado
         private void ListarClientes()
         {
             ClienteCRUD clientecrud = new ClienteCRUD(_conexao);
-            funcionarioCrud funcionarioCrud = new funcionarioCrud(_conexao);
-
-           /// if (comboBox_buscar_tipo.Text == "Cliente")
-            {
+                        
                 string busca = txb_buscar_cadastro.Text.ToString();
                 DataSet dsCliente = new DataSet();
                 dsCliente = clientecrud.BuscarCliente(busca);
 
                 dgv_cliente.DataSource = dsCliente;
                 dgv_cliente.DataMember = "clientes";
-            }
-           //else if (comboBox_buscar_tipo.Text == "Funcionario")
-           // {
-               // string busca = txb_buscar_cadastro.Text.ToString();
-             //   DataSet dsfuncionario = new DataSet();
-           //     dsfuncionario = funcionarioCrud.BuscarFuncionario(busca);
-            //
-            //    dgv_cliente.DataSource = dsfuncionario;
-            //    dgv_cliente.DataMember = "funcionario";
-           // }
-                 
+            
+            
+        }
+
+        private void ListarFuncionarios()
+        {
+             funcionarioCrud funcionarioCrud = new funcionarioCrud(_conexao);
+
+                string busca = txb_buscar_cadastro.Text.ToString();
+                DataSet dsFuncionario = new DataSet();
+                dsFuncionario = funcionarioCrud.BuscarFuncionario(busca);
+
+                dgv_cliente.DataSource= dsFuncionario;
+                dgv_cliente.DataMember = "funcionario";
+
+           
+          
         }
 
 
@@ -336,42 +339,86 @@ namespace Projeto_ar_condicionado
 
         private void btn_buscar_cadastro_Click(object sender, EventArgs e)
         {
-            if (txb_buscar_cadastro.Text == "")
+            if (comboBox_buscar_tipo.Text == "Cliente")
             {
-                MessageBox.Show("digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txb_buscar_cadastro.Focus();
-                return;
+
+                if (txb_buscar_cadastro.Text == "")
+                {
+                    MessageBox.Show("digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txb_buscar_cadastro.Focus();
+                    return;
+                }
+                ListarClientes();
             }
-            ListarClientes();
+            else if(comboBox_buscar_tipo.Text== "Funcionario")
+            {
+                if (txb_buscar_cadastro.Text == "")
+                {
+                    MessageBox.Show("digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txb_buscar_cadastro.Focus();
+                    return;
+                }
+                ListarFuncionarios();
+            }
         }
 
         private void ConfigurarDataGrid()
         {
-            dgv_cliente.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+            if (comboBox_buscar_tipo.Text == "Cliente")
+            {
 
-            dgv_cliente.RowHeadersWidth = 25;
+                dgv_cliente.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
 
-            dgv_cliente.Columns["clienteID"].Visible = false;
+                dgv_cliente.RowHeadersWidth = 25;
 
-            dgv_cliente.Columns["endereco_cliente"].HeaderText = "Endereço";
+                dgv_cliente.Columns["clienteID"].Visible = false;
 
-            dgv_cliente.Columns["telefone_cliente"].HeaderText = "Tel";
+                dgv_cliente.Columns["endereco_cliente"].HeaderText = "Endereço";
 
-            dgv_cliente.Columns["nome_cliente"].HeaderText = "Nome Completo";
+                dgv_cliente.Columns["telefone_cliente"].HeaderText = "Tel";
 
-            dgv_cliente.Columns["cpf_cliente"].HeaderText ="CPF";
-            
-            dgv_cliente.Columns["gmail_cliente"].HeaderText= "Email";
+                dgv_cliente.Columns["nome_cliente"].HeaderText = "Nome Completo";
 
-            dgv_cliente.Columns["CEP_cliente"].HeaderText = "CEP";
+                dgv_cliente.Columns["cpf_cliente"].HeaderText = "CPF";
 
-            dgv_cliente.Columns["cidade_cliente"].HeaderText = "Cidade";
+                dgv_cliente.Columns["gmail_cliente"].HeaderText = "Email";
 
-            dgv_cliente.Columns["bairro_cliente"].HeaderText = "Bairro";
+                dgv_cliente.Columns["CEP_cliente"].HeaderText = "CEP";
 
-            dgv_cliente.Columns["Numero_casa"].HeaderText = "Nº";
+                dgv_cliente.Columns["cidade_cliente"].HeaderText = "Cidade";
 
-            dgv_cliente.Columns["complemento_cliente"].HeaderText = "Complemento";          
+                dgv_cliente.Columns["bairro_cliente"].HeaderText = "Bairro";
+
+                dgv_cliente.Columns["Numero_casa"].HeaderText = "Nº";
+
+                dgv_cliente.Columns["complemento_cliente"].HeaderText = "Complemento";
+            }
+            else if (comboBox_buscar_tipo.Text == "Funcionario")
+            {
+                dgv_cliente.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+
+                dgv_cliente.RowHeadersWidth = 25;
+
+                dgv_cliente.Columns["funcionarioID"].Visible = false;
+
+                dgv_cliente.Columns["endereco_funcionario"].HeaderText = "Endereço";
+
+                dgv_cliente.Columns["telefone_funcionario"].HeaderText = "Tel";
+
+                dgv_cliente.Columns["nome_funcionario"].HeaderText = "Nome Completo";
+
+                dgv_cliente.Columns["cpf_funcionario"].HeaderText = "CPF";
+
+                dgv_cliente.Columns["CEP_funcionario"].HeaderText = "CEP";
+
+                dgv_cliente.Columns["cidade_funcionario"].HeaderText = "Cidade";
+
+                dgv_cliente.Columns["bairro_funcionario"].HeaderText = "Bairro";
+
+                dgv_cliente.Columns["numero_funcionario"].HeaderText = "Nº";
+
+                dgv_cliente.Columns["complemento_funcionario"].HeaderText = "Complemento";
+            }
 
         }
 
@@ -407,17 +454,28 @@ namespace Projeto_ar_condicionado
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-           if (dgv_cliente.SelectedRows.Count > 0)
+            if (comboBox_buscar_tipo.Text == "Cliente")
             {
-                int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
-                var frm_Alterar_Cadastro = new frm_alterar_cadastro(codigo);
+                if (dgv_cliente.SelectedRows.Count > 0)
+                {
+                    int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
+                    var frm_Alterar_Cadastro = new frm_alterar_cliente(codigo);
+                    frm_Alterar_Cadastro.ShowDialog();
+                    ListarClientes();
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (comboBox_buscar_tipo.Text == "Funcionario")
+            {
+                int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["funcionarioID"].Value);
+                var frm_Alterar_Cadastro = new frm_alterar_funcionario(codigo);
                 frm_Alterar_Cadastro.ShowDialog();
-                ListarClientes();
-           }
-           else
-           {
-                MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
+                ListarFuncionarios();
+            }
+
         }
 
         private void dgv_cliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -427,7 +485,14 @@ namespace Projeto_ar_condicionado
 
         private void comboBox_buscar_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(comboBox_buscar_tipo.Text == "Cliente")
+            {
+                ListarClientes();
+            }
+            else if(comboBox_buscar_tipo.Text == "Funcionario")
+            {
+                ListarFuncionarios();
+            }
         }
     }
 }

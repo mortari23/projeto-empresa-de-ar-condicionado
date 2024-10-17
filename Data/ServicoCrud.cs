@@ -136,6 +136,7 @@ namespace Data
         public void ObtemServico (int codigoServico)
         {
             const string query = "Select * from servico Where  servicoID = @codigoServico";
+                
             servico servico = null; //variavel para armazenar o cliente
             try
             {
@@ -152,14 +153,23 @@ namespace Data
                             servico = new servico
                             {
                                 servicoID = Convert.ToInt32(reader["servicoID"]),
+
                                 clienteID = Convert.ToInt32(reader["clienteID"]),
+
                                 funcionarioID = Convert.ToInt32(reader["funcionarioID"]),
-                                data_servico = Convert.ToDateTime(reader["data_servico"]),
-                                valor_servico = Convert.ToInt32(reader["valor_servico"]),
-                                descricao_servico = Convert.ToString(reader["descricao_servico"]),
-                                descricao_contrato = Convert.ToString(reader["descricao_contrato"]),
-                                valor_contrato = Convert.ToInt32(reader["valor_contrato"]),
-                                tipo_contrato = Convert.ToString(reader["tipo_contrato"]),
+                                //----------------------------------------------------//
+
+                                data_servico = reader["data_servico"].ToString(),
+
+                                valor_servico = reader["valor_servico"].ToString(),
+
+                                descricao_servico = reader["descricao_servico"].ToString(),
+
+                                descricao_contrato = reader["descricao_contrato"].ToString(),
+
+                                valor_contrato = reader["valor_contrato"].ToString(),
+
+                                tipo_contrato = reader["tipo_contrato"].ToString(),
 
                             };
 
@@ -171,7 +181,11 @@ namespace Data
             {
                 throw new Exception(ex.Message, ex);
             } 
-            return servico;    
+              
+        }
+         public void BuscarCliente (int buscar)
+        {
+
         }
     }
 }

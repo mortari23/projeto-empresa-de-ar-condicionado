@@ -11,13 +11,14 @@ using System.Windows.Forms;
 
 namespace Projeto_ar_condicionado
 {
-    public partial class frm_alterar_cadastro : Form
+    public partial class frm_alterar_cliente : Form
     {
         string _conexao = Projeto_ar_condicionado.Properties.Settings.Default.conexao;
 
-        public frm_alterar_cadastro(int codigo)
+        public frm_alterar_cliente(int codigo)
         {
             InitializeComponent();
+          
             if (codigo > 0)
             {
                 Cliente cliente = new Cliente();

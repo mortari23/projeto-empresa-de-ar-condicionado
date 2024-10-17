@@ -118,6 +118,7 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Bairro_funcionario", funcionario.bairro_funcionario);
                     comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
                     comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
@@ -151,10 +152,11 @@ namespace Data
                                 telefone_funcionario = reader["telefone_funcionario"].ToString(),
                                 cpf_funcionario = reader["cpf_funcionario"].ToString(),
                                 endereco_funcionario = reader["cpf_funcionario"].ToString(),
-                                CEP_funcionario = reader["CEP"].ToString(),
-                                bairro_funcionario = reader["bairro"].ToString(),
+                                CEP_funcionario = reader["CEP_funcionario"].ToString(),
+                                bairro_funcionario = reader["bairro_funcionario"].ToString(),
                                 numero_funcionario = reader["numero_funcionario"].ToString(),
-                                complemento_funcionario = reader["complemento_funcionario"].ToString()
+                                complemento_funcionario = reader["complemento_funcionario"].ToString(),
+                                cidade_funcionario = reader["cidade_funcionario"].ToString()
                             };
                         }
                     }

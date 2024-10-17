@@ -99,7 +99,7 @@ namespace Data
         public void AlterarCliente (Cliente cliente)
         {
             const string query = @"upate clientes set " +
-                                 "nome_cliente = @Nome_cliente, " +
+                                 "nome_cliente = @Nome_cliente , " +
                                  "telefone_cliente = @Telefone_cliente, " +
                                  "cpf_cliente = @CPF_cliente, " +
                                  "endereco_cliente = @Endereco_cliente, " +
