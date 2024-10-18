@@ -295,45 +295,19 @@ namespace Projeto_ar_condicionado
 
         private void comboBox_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(comboBox_tipo.Text=="Funcionario")
+            if(comboBox_tipo.Text=="Funcionario")
             {
-                maskedTextBox_cep.ReadOnly = true;
-                maskedTextBox_cep.BackColor = Color.LightGray;
-
-                txb_bairro.ReadOnly = true;
-                txb_bairro.BackColor = Color.LightGray;
-
-                txb_cidade.ReadOnly = true;
-                txb_cidade.BackColor = Color.LightGray;
-
-                txb_rua.ReadOnly = true;
-                txb_rua.BackColor = Color.LightGray;
-
-                txb_complemento.ReadOnly = true;
-                txb_complemento.BackColor = Color.LightGray;
-
-                maskedTextBox_numero.ReadOnly = true;
-                maskedTextBox_numero.BackColor = Color.LightGray;
+                txb_gmail.ReadOnly = true;
+                txb_gmail.BackColor = Color.LightGray;
             }
-           // else
+            else
             {
-                maskedTextBox_cep.ReadOnly = false;
-                maskedTextBox_cep.BackColor = Color.White;
+    
 
-                txb_bairro.ReadOnly = false;
-                txb_bairro.BackColor = Color.White;
+                txb_gmail.ReadOnly = false;
+                txb_gmail.BackColor = Color.White;
 
-                txb_cidade.ReadOnly = false;
-                txb_cidade.BackColor = Color.White;
-
-                txb_rua.ReadOnly = false;
-                txb_rua.BackColor = Color.White;
-
-                txb_complemento.ReadOnly = false;
-                txb_complemento.BackColor = Color.White;
-
-                maskedTextBox_numero.ReadOnly = false;
-                maskedTextBox_numero.BackColor = Color.White;
+              
             }
         }
 

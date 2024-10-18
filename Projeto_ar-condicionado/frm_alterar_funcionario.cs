@@ -14,6 +14,7 @@ namespace Projeto_ar_condicionado
     public partial class frm_alterar_funcionario : Form
     {
         string _conexao = Projeto_ar_condicionado.Properties.Settings.Default.conexao;
+        
 
         public frm_alterar_funcionario(int codigo)
         {
@@ -45,6 +46,7 @@ namespace Projeto_ar_condicionado
 
         }
 
+
         private void btn_salvar_Click(object sender, EventArgs e)
         {
             funcionario funcionario = new funcionario();
@@ -69,6 +71,26 @@ namespace Projeto_ar_condicionado
             catch (Exception ex)
             {
                 MessageBox.Show("ERRO" + ex);
+            }
+        }
+
+        private void comboBox_tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+            if (comboBox_tipo.Text == "Funcionario")
+            {
+                txb_gmail.ReadOnly = true;
+                txb_gmail.BackColor = Color.LightGray;
+            }
+            else
+            {
+
+
+                txb_gmail.ReadOnly = false;
+                txb_gmail.BackColor = Color.White;
+
+
             }
         }
     }

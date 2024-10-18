@@ -49,6 +49,8 @@ CREATE TABLE funcionario (
 
  select * from funcionario
  alter table funcionario add cidade_funcionario nvarchar(100);
+
+ update clientes set nome_cliente = @Nome_cliente,telefone_cliente = @Telefone_cliente, cpf_cliente = @CPF_cliente, endereco_cliente = @Endereco_cliente, gmail_cliente = @Gmail_cliente, cidade_cliente = @Cidade_cliente, CEP_cliente = @CEP_cliente, bairro_cliente = @Bairro_cliente, Numero_casa = @Numero_casa, complemento_cliente = @Complemento_cliente where clienteID = @codigoCliente
  
  
  

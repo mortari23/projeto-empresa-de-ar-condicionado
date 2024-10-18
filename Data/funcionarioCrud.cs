@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,19 +95,9 @@ namespace Data
         }
         public void AlterarFuncionario(funcionario funcionario)
         {
-            const string query = @"upate funcionario set" +
-                                 "nome_funcionario=@Nome_funcionario" +
-                                 "telefone_funcionario=@Telefone_funcionario" +
-                                 "cpf_funcionario=@CPF_funcionario" +
-                                 "endereco_funcionario =@Endereco_funcionario" +
-                                 "CEP_funcionario=@CEP_funcionario" +
-                                 "bairro_funcionario=@Bairro_funcionario" +
-                                 "numero_funcionario=@Numero_funcionario" +
-                                 "complemento_funcionario=@Complemento_funcionario" +
-                                 "cidade_funconario=@Cidade_funcionario";
-
-            try
-            {
+            const string query = @"update funcionario set nome_funcionario = @Nome_funcionario, telefone_funcionario = @Telefone_funcionario, cpf_funcionario = @CPF_funcionario, endereco_funcionario = @Endereco_funcionario, cidade_funcionario = @Cidade_funcionario, CEP_funcionario = @CEP_funcionario, bairro_funcionario = @Bairro_funcionario, numero_funcionario = @Numero_funcionario where funcionarioID = @codigofuncionario";
+             try
+             {
                 using (var conexaoBd = new SqlConnection(_conexao))
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
@@ -119,15 +110,16 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
                     comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
                     comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
+                    comandoSql.Parameters.AddWithValue("@codigofuncionario", funcionario.funcionarioID);
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
                 }
-            }
+             }
             catch (Exception ex)
-            {
+             {
                 throw new Exception($"erro ao alterar o funcionario : {ex.Message}", ex);
-            }
+             }
         }
         public funcionario ObtemFuncionario(int codigoFuncionario)
         {

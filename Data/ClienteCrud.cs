@@ -97,26 +97,15 @@ namespace Data
             }
         }
         public void AlterarCliente (Cliente cliente)
-        {
-            const string query = @"upate clientes set " +
-                                 "nome_cliente = @Nome_cliente , " +
-                                 "telefone_cliente = @Telefone_cliente, " +
-                                 "cpf_cliente = @CPF_cliente, " +
-                                 "endereco_cliente = @Endereco_cliente, " +
-                                 "gmai_cliente = @Gmail_cliente, " +
-                                 "cidade_cliente = @Cidade_cliente, " +
-                                 "CEP_cliente = @CEP_cliente, " +
-                                 "bairro_cliente = @Bairro_cliente, " +
-                                 "numero_casa = @Numero_casa, " +
-                                 "complemento_cliente = @Complemento_cliente " +
-                                 "where clienteID = @codigoCliente ";
+        { 
+            const string query = @"update clientes set nome_cliente = @Nome_cliente,telefone_cliente = @Telefone_cliente, cpf_cliente = @CPF_cliente, endereco_cliente = @Endereco_cliente, gmail_cliente = @Gmail_cliente, cidade_cliente = @Cidade_cliente, CEP_cliente = @CEP_cliente, bairro_cliente = @Bairro_cliente, Numero_casa = @Numero_casa, complemento_cliente = @Complemento_cliente where clienteID = @codigoCliente";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
                     comandoSql.Parameters.AddWithValue("@Nome_cliente", cliente.nome_cliente);
-                    comandoSql.Parameters.AddWithValue("@Teleone_cliente", cliente.telefone_cliente);
+                    comandoSql.Parameters.AddWithValue("@Telefone_cliente", cliente.telefone_cliente);
                     comandoSql.Parameters.AddWithValue("@CPF_cliente", cliente.cpf_clienete);
                     comandoSql.Parameters.AddWithValue("@Endereco_cliente", cliente.endereco_cliente);
                     comandoSql.Parameters.AddWithValue("@Gmail_cliente", cliente.gmail_cliente);
@@ -125,6 +114,7 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Bairro_cliente", cliente.bairro_cliente);
                     comandoSql.Parameters.AddWithValue("@Numero_casa", cliente.numero_casa);
                     comandoSql.Parameters.AddWithValue("@Complemento_cliente", cliente.complemento_cliente);
+                    comandoSql.Parameters.AddWithValue("@codigoCliente", cliente.clienteID);
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
