@@ -60,26 +60,67 @@ namespace Projeto_ar_condicionado
             Cliente cliente = new Cliente();
             ClienteCRUD clientecrud = new ClienteCRUD(_conexao);
 
-            try
-            {
-                cliente.clienteID = int.Parse(txb_codigo.Text);
-                cliente.nome_cliente = txb_nome.Text;
-                cliente.telefone_cliente = maskedTextBox_telefone.Text;
-                cliente.cpf_clienete = maskedTextBox_cpf.Text;
-                cliente.gmail_cliente = txb_gmail.Text;
-                cliente.CEP_cliente = maskedTextBox_cep.Text;
-                cliente.endereco_cliente = txb_rua.Text;
-                cliente.bairro_cliente = txb_bairro.Text;
-                cliente.complemento_cliente = txb_complemento.Text;
-                cliente.cidade_cliente = txb_cidade.Text;
-                cliente.numero_casa = maskedTextBox_numero.Text;
+            funcionario funcionario = new funcionario();
+            funcionarioCrud funcionarioCrud = new funcionarioCrud(_conexao);
 
-                clientecrud.AlterarCliente(cliente);
-                this.Close();
-            }
-            catch (Exception ex)
+            if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (comboBox_tipo.Text == null) || (maskedTextBox_numero.Text == "")
+           || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "")
+           || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
             {
-                MessageBox.Show("ERRO" + ex);
+                MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                if (comboBox_tipo.Text == "Cliente")
+                {
+
+
+                    try
+                    {
+                        cliente.clienteID = int.Parse(txb_codigo.Text);
+                        cliente.nome_cliente = txb_nome.Text;
+                        cliente.telefone_cliente = maskedTextBox_telefone.Text;
+                        cliente.cpf_clienete = maskedTextBox_cpf.Text;
+                        cliente.gmail_cliente = txb_gmail.Text;
+                        cliente.CEP_cliente = maskedTextBox_cep.Text;
+                        cliente.endereco_cliente = txb_rua.Text;
+                        cliente.bairro_cliente = txb_bairro.Text;
+                        cliente.complemento_cliente = txb_complemento.Text;
+                        cliente.cidade_cliente = txb_cidade.Text;
+                        cliente.numero_casa = maskedTextBox_numero.Text;
+
+                        clientecrud.AlterarCliente(cliente);
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ERRO" + ex);
+                    }
+
+                }
+                else if (comboBox_tipo.Text == "Funcionario")
+                {
+
+
+                    funcionario.nome_funcionario = txb_nome.Text;
+                    funcionario.endereco_funcionario = txb_rua.Text;
+                    funcionario.cpf_funcionario = maskedTextBox_cpf.Text;
+                    funcionario.CEP_funcionario = maskedTextBox_cep.Text;
+                    funcionario.bairro_funcionario = txb_bairro.Text;
+                    funcionario.numero_funcionario = maskedTextBox_numero.Text;
+                    funcionario.complemento_funcionario = txb_complemento.Text;
+                    funcionario.cidade_funcionario = txb_cidade.Text;
+                    funcionario.telefone_funcionario = maskedTextBox_telefone.Text;
+                    funcionario.cidade_funcionario = txb_cidade.Text;
+
+                    funcionarioCrud.IncluirFuncionario(funcionario);
+
+                    MessageBox.Show("Cadastro bem sucedido", "cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                   
+
+                }
             }
         }
     }

@@ -48,9 +48,17 @@ CREATE TABLE funcionario (
  alter table funcionario add CEP_funcionario varchar(15), bairro_funcionario varchar(50);
 
  select * from funcionario
+  select * from clientes
  alter table funcionario add cidade_funcionario nvarchar(100);
 
  update clientes set nome_cliente = @Nome_cliente,telefone_cliente = @Telefone_cliente, cpf_cliente = @CPF_cliente, endereco_cliente = @Endereco_cliente, gmail_cliente = @Gmail_cliente, cidade_cliente = @Cidade_cliente, CEP_cliente = @CEP_cliente, bairro_cliente = @Bairro_cliente, Numero_casa = @Numero_casa, complemento_cliente = @Complemento_cliente where clienteID = @codigoCliente
  
- 
- 
+ insert into servico (data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato) 
+ Values('20230517',1000,'instalaçao ar condicionado',null,null,null);
+
+ insert into clientes (nome_cliente,telefone_cliente,cpf_cliente,endereco_cliente,gmail_cliente,cidade_cliente,Numero_casa,complemento_cliente,CEP_cliente,bairro_cliente)
+ values('sampaio','17996075011','26115133840','rua jorge',null,'rio preto','1016',null,'15054000','jardins residencial');
+
+ insert into funcionario (nome_funcionario,cpf_funcionario,telefone_funcionario,endereco_funcionario,numero_funcionario,complemento_funcionario,CEP_funcionario,bairro_funcionario,cidade_funcionario)
+ values('sampaio','26115133840','17996075011','rua jorge','1016',null,'1506522233','joao paulo 2','rio preto');
+

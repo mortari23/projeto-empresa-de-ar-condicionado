@@ -150,7 +150,7 @@ namespace Projeto_ar_condicionado
            if (comboBox_tipo.Text == "Cliente")
            { 
 
-             if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
+             if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (comboBox_tipo.Text == null) || (maskedTextBox_numero.Text == "")
                || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") || (txb_gmail.Text == "")
                || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
              {
@@ -199,7 +199,7 @@ namespace Projeto_ar_condicionado
            else if (comboBox_tipo.Text == "Funcionario")
            {
                 if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
-               || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") || (txb_gmail.Text == "")
+               || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") 
                || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
                 {
                     MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -406,23 +406,47 @@ namespace Projeto_ar_condicionado
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            if (dgv_cliente.SelectedRows.Count > 0)
+            if (comboBox_buscar_tipo.Text == "Cliente")
             {
-                int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
-
-                var resultado = MessageBox.Show("Deseja Excluir Esse Registro?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-                if (resultado == DialogResult.Yes)
+                if (dgv_cliente.SelectedRows.Count > 0)
                 {
-                    ClienteCRUD CliCrud = new ClienteCRUD(_conexao);
-                    CliCrud.ExcluirCliente(codigo);
-                    ListarClientes();
+                    int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["clienteID"].Value);
+
+                    var resultado = MessageBox.Show("Deseja Excluir Esse Registro?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        ClienteCRUD CliCrud = new ClienteCRUD(_conexao);
+                        CliCrud.ExcluirCliente(codigo);
+                        ListarClientes();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um cadastro");
                 }
             }
-            else
+            else if (comboBox_buscar_tipo.Text == "Funcionario")
             {
-                MessageBox.Show("Selece um cadastro");
+                if (dgv_cliente.SelectedRows.Count > 0)
+                {
+                    int codigo = Convert.ToInt32(dgv_cliente.CurrentRow.Cells["funcionarioID"].Value);
+
+                    var resultado = MessageBox.Show("Deseja Excluir Esse Registro?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        funcionarioCrud funcionarioCrud = new funcionarioCrud(_conexao);
+                        funcionarioCrud.ExcluirFuncionario(codigo);
+                        ListarFuncionarios();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um cadastro");
+                }
             }
+           
 
         }
 
