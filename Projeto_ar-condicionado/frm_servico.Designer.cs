@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_servico = new System.Windows.Forms.TabPage();
+            this.txb_funcionario_ser = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txb_cliente_ser = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btn_salvar_servico = new System.Windows.Forms.Button();
             this.btn_limpar_servico = new System.Windows.Forms.Button();
             this.txb_descricao_servico = new System.Windows.Forms.TextBox();
@@ -38,6 +42,10 @@
             this.maskedTextBox_Data_servico = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage_Contrato = new System.Windows.Forms.TabPage();
+            this.txb_funcionario_con = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txb_cliente_con = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.comboBox_tipo_contrato = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_salvar_contrato = new System.Windows.Forms.Button();
@@ -55,14 +63,6 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_fechar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txb_cliente_ser = new System.Windows.Forms.TextBox();
-            this.txb_funcionario_ser = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txb_funcionario_con = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txb_cliente_con = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_servico.SuspendLayout();
             this.tabPage_Contrato.SuspendLayout();
@@ -101,6 +101,42 @@
             this.tabPage_servico.TabIndex = 0;
             this.tabPage_servico.Text = "Cadastro Serviço";
             this.tabPage_servico.UseVisualStyleBackColor = true;
+            // 
+            // txb_funcionario_ser
+            // 
+            this.txb_funcionario_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txb_funcionario_ser.Location = new System.Drawing.Point(144, 82);
+            this.txb_funcionario_ser.Name = "txb_funcionario_ser";
+            this.txb_funcionario_ser.Size = new System.Drawing.Size(232, 26);
+            this.txb_funcionario_ser.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(141, 62);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 17);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Funcionario";
+            // 
+            // txb_cliente_ser
+            // 
+            this.txb_cliente_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txb_cliente_ser.Location = new System.Drawing.Point(144, 33);
+            this.txb_cliente_ser.Name = "txb_cliente_ser";
+            this.txb_cliente_ser.Size = new System.Drawing.Size(232, 26);
+            this.txb_cliente_ser.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(141, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Cliente";
             // 
             // btn_salvar_servico
             // 
@@ -193,6 +229,42 @@
             this.tabPage_Contrato.TabIndex = 1;
             this.tabPage_Contrato.Text = "Cadastro Contrato";
             this.tabPage_Contrato.UseVisualStyleBackColor = true;
+            // 
+            // txb_funcionario_con
+            // 
+            this.txb_funcionario_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txb_funcionario_con.Location = new System.Drawing.Point(140, 85);
+            this.txb_funcionario_con.Name = "txb_funcionario_con";
+            this.txb_funcionario_con.Size = new System.Drawing.Size(232, 26);
+            this.txb_funcionario_con.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(137, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 17);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Funcionario";
+            // 
+            // txb_cliente_con
+            // 
+            this.txb_cliente_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txb_cliente_con.Location = new System.Drawing.Point(140, 33);
+            this.txb_cliente_con.Name = "txb_cliente_con";
+            this.txb_cliente_con.Size = new System.Drawing.Size(232, 26);
+            this.txb_cliente_con.TabIndex = 25;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(140, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 17);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Cliente";
             // 
             // comboBox_tipo_contrato
             // 
@@ -327,6 +399,7 @@
             this.btn_buscar_cadastro.TabIndex = 9;
             this.btn_buscar_cadastro.Text = "Buscar";
             this.btn_buscar_cadastro.UseVisualStyleBackColor = true;
+            this.btn_buscar_cadastro.Click += new System.EventHandler(this.btn_buscar_cadastro_Click);
             // 
             // comboBox_buscar_tipo
             // 
@@ -354,6 +427,7 @@
             this.btn_excluir.TabIndex = 6;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btn_editar
             // 
@@ -373,78 +447,6 @@
             this.btn_fechar.Text = "Fechar";
             this.btn_fechar.UseVisualStyleBackColor = true;
             this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(141, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 17);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Cliente";
-            // 
-            // txb_cliente_ser
-            // 
-            this.txb_cliente_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_cliente_ser.Location = new System.Drawing.Point(144, 33);
-            this.txb_cliente_ser.Name = "txb_cliente_ser";
-            this.txb_cliente_ser.Size = new System.Drawing.Size(232, 26);
-            this.txb_cliente_ser.TabIndex = 16;
-            // 
-            // txb_funcionario_ser
-            // 
-            this.txb_funcionario_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_funcionario_ser.Location = new System.Drawing.Point(144, 82);
-            this.txb_funcionario_ser.Name = "txb_funcionario_ser";
-            this.txb_funcionario_ser.Size = new System.Drawing.Size(232, 26);
-            this.txb_funcionario_ser.TabIndex = 18;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(141, 62);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 17);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Funcionario";
-            // 
-            // txb_funcionario_con
-            // 
-            this.txb_funcionario_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_funcionario_con.Location = new System.Drawing.Point(140, 85);
-            this.txb_funcionario_con.Name = "txb_funcionario_con";
-            this.txb_funcionario_con.Size = new System.Drawing.Size(232, 26);
-            this.txb_funcionario_con.TabIndex = 27;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(137, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 17);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Funcionario";
-            // 
-            // txb_cliente_con
-            // 
-            this.txb_cliente_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_cliente_con.Location = new System.Drawing.Point(140, 33);
-            this.txb_cliente_con.Name = "txb_cliente_con";
-            this.txb_cliente_con.Size = new System.Drawing.Size(232, 26);
-            this.txb_cliente_con.TabIndex = 25;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(140, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 17);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Cliente";
             // 
             // frm_servico_contrato
             // 

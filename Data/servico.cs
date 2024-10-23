@@ -17,6 +17,7 @@ namespace Data
         public string descricao_contrato { get; set; }
         public string valor_contrato{ get; set; }
         public string tipo_contrato { get; set; }
+        public string data_contrato { get; set; }
 
     }
 }
