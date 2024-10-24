@@ -161,13 +161,13 @@ namespace Data
 
                                 data_servico = reader["data_servico"].ToString(),
 
-                                valor_servico = reader["valor_servico"].ToString(),
+                                valor_servico = Convert.ToDecimal(reader["valor_servico"]),
 
                                 descricao_servico = reader["descricao_servico"].ToString(),
 
                                 descricao_contrato = reader["descricao_contrato"].ToString(),
 
-                                valor_contrato = reader["valor_contrato"].ToString(),
+                                valor_contrato = Convert.ToDecimal(reader["valor_contrato"]),
 
                                 tipo_contrato = reader["tipo_contrato"].ToString(),
 
@@ -183,9 +183,6 @@ namespace Data
             } 
               
         }
-         public void BuscarCliente (int buscar)
-        {
-
-        }
+        
     }
 }

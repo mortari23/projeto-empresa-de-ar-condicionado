@@ -62,3 +62,7 @@ CREATE TABLE funcionario (
  insert into funcionario (nome_funcionario,cpf_funcionario,telefone_funcionario,endereco_funcionario,numero_funcionario,complemento_funcionario,CEP_funcionario,bairro_funcionario,cidade_funcionario)
  values('sampaio','26115133840','17996075011','rua jorge','1016',null,'1506522233','joao paulo 2','rio preto');
 
+ alter table servico drop column data_servico;
+ alter table servico add data_servico varchar(10);
+
+ select * from servico

@@ -116,9 +116,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(141, 62);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 17);
+            this.label7.Size = new System.Drawing.Size(99, 17);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Funcionario";
+            this.label7.Text = "ID Funcionario";
             // 
             // txb_cliente_ser
             // 
@@ -134,9 +134,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(141, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 17);
+            this.label6.Size = new System.Drawing.Size(72, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Cliente";
+            this.label6.Text = " ID Cliente";
             // 
             // btn_salvar_servico
             // 
@@ -411,6 +411,7 @@
             this.comboBox_buscar_tipo.Name = "comboBox_buscar_tipo";
             this.comboBox_buscar_tipo.Size = new System.Drawing.Size(101, 21);
             this.comboBox_buscar_tipo.TabIndex = 8;
+            this.comboBox_buscar_tipo.SelectedIndexChanged += new System.EventHandler(this.comboBox_buscar_tipo_SelectedIndexChanged);
             // 
             // txb_buscar_cadastro
             // 

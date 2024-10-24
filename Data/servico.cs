@@ -12,10 +12,10 @@ namespace Data
         public int clienteID { get; set; }
         public int funcionarioID {  get; set; }
         public string data_servico { get; set; }
-        public string valor_servico { get; set; }
+        public decimal valor_servico { get; set; }
         public string descricao_servico { get; set; }
         public string descricao_contrato { get; set; }
-        public string valor_contrato{ get; set; }
+        public decimal valor_contrato{ get; set; }
         public string tipo_contrato { get; set; }
         public string data_contrato { get; set; }
 
