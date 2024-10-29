@@ -66,3 +66,6 @@ CREATE TABLE funcionario (
  alter table servico add data_servico varchar(10);
 
  select * from servico
+
+INSERT INTO servico (clienteID,funcionarioID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato)
+                Values(4,4,13/05/2007,2000,'aa','@Descricao_contrato',null,null)

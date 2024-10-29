@@ -132,29 +132,35 @@ namespace Projeto_ar_condicionado
             servico servico = new servico();
             ServicoCrud servicoCrud = new ServicoCrud(_conexao);
 
-            if ((maskedTextBox_data_contrato.Text == "") || (txb_valor_contrato.Text == "") || (txb_descricao_contrato.Text == "Descrição") || (txb_descricao_contrato.Text == "") || (comboBox_tipo_contrato.Items==null) ||(txb_cliente_con.Text=="")||(txb_funcionario_con.Text==""))
-            {
-                MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                servico.data_contrato = maskedTextBox_data_contrato.Text;
-                servico.valor_contrato = Convert.ToDecimal(txb_valor_servico.Text);
-                servico.descricao_contrato = txb_descricao_contrato.Text;
-                servico.tipo_contrato = comboBox_tipo_contrato.Text;
-                servico.data_servico = maskedTextBox_Data_servico.Text;
-                servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
-                servico.descricao_servico = txb_descricao_servico.Text;
 
-                servicoCrud.IncluiServico(servico);
-                MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
 
-                txb_descricao_contrato.Clear();
-                txb_valor_contrato.Clear();
-                maskedTextBox_data_contrato.Clear();
+                if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == ""))
+                {
+                    MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    servico.data_contrato = maskedTextBox_data_contrato.Text;
+                    servico.valor_contrato = Convert.ToDecimal(txb_valor_contrato.Text);
+                    servico.descricao_contrato = txb_descricao_contrato.Text;
+                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
+                    servico.data_servico = maskedTextBox_data_contrato.Text;
+                    servico.valor_servico = Convert.ToDecimal(txb_valor_contrato.Text);
+                    servico.descricao_servico = txb_descricao_contrato.Text;
+                    servico.clienteID = Convert.ToInt32(txb_cliente_con.Text);
+                    servico.funcionarioID = Convert.ToInt32(txb_funcionario_con.Text);
 
-                MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
-            }
+
+                    servicoCrud.IncluiServico(servico);
+                    MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
+
+                    txb_descricao_contrato.Clear();
+                    txb_valor_contrato.Clear();
+                    maskedTextBox_data_contrato.Clear();
+
+                }
+
+
         }
         //--------------------------------------------------------------------------------------------------------//
         private void btn_fechar_Click(object sender, EventArgs e)
