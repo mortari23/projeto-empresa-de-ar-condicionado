@@ -80,6 +80,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(558, 373);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPage_servico
             // 
@@ -101,6 +102,7 @@
             this.tabPage_servico.TabIndex = 0;
             this.tabPage_servico.Text = "Cadastro Serviço";
             this.tabPage_servico.UseVisualStyleBackColor = true;
+            this.tabPage_servico.Click += new System.EventHandler(this.tabPage_servico_Click);
             // 
             // txb_funcionario_ser
             // 
@@ -229,6 +231,7 @@
             this.tabPage_Contrato.TabIndex = 1;
             this.tabPage_Contrato.Text = "Cadastro Contrato";
             this.tabPage_Contrato.UseVisualStyleBackColor = true;
+            this.tabPage_Contrato.Click += new System.EventHandler(this.tabPage_Contrato_Click);
             // 
             // txb_funcionario_con
             // 
@@ -390,6 +393,7 @@
             this.dataGridView_consultar.Name = "dataGridView_consultar";
             this.dataGridView_consultar.Size = new System.Drawing.Size(554, 287);
             this.dataGridView_consultar.TabIndex = 10;
+            this.dataGridView_consultar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_consultar_CellContentClick);
             // 
             // btn_buscar_cadastro
             // 
@@ -459,6 +463,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "frm_servico_contrato";
             this.Text = "Serviço Contrato ";
+            this.Load += new System.EventHandler(this.frm_servico_contrato_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_servico.ResumeLayout(false);
             this.tabPage_servico.PerformLayout();

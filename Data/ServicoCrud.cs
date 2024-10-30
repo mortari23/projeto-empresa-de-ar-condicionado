@@ -21,8 +21,8 @@ namespace Data
         public void IncluiServico(servico servico)
         {
             //query para inserir algo com SQL no banco de dados 
-            const string query = @"INSERT INTO servico (clienteID,funcionarioID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato)
-                Values(@Clienteid,@Funcionarioid,@Data_servico,@Valor_servico,@Descricao_servico,@Descricao_contrato,@Valor_contrato,@Tipo_contrato)";
+            const string query = @"INSERT INTO servico (clienteID,funcionarioID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato,data_contrato,tipo)
+                Values(@Clienteid,@Funcionarioid,@Data_servico,@Valor_servico,@Descricao_servico,@Descricao_contrato,@Valor_contrato,@Tipo_contrato,@Data_contrato,@Tipo)";
 
             //bloco para tratar possiveis erros ao inserir e exebir mensagens
             try
@@ -38,6 +38,8 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Descricao_contrato", servico.descricao_contrato);
                     comandoSql.Parameters.AddWithValue("@Valor_contrato", servico.valor_contrato);
                     comandoSql.Parameters.AddWithValue("@Tipo_contrato", servico.tipo_contrato);
+                    comandoSql.Parameters.AddWithValue("@Data_contrato", servico.data_contrato);
+                    comandoSql.Parameters.AddWithValue("@Tipo", servico.tipo);
 
                     conexaoBd.Open();
 
@@ -52,7 +54,7 @@ namespace Data
         //buscar servico fazer a busca no banco de dados
         public DataSet BuscarServico(string pesquisa = "")
         {
-            const string query = "Select * from servico Where Data_servico Like @Pesquisa";
+            const string query = "Select * from servico Where tipo Like @Pesquisa";
 
             try
             {
@@ -108,7 +110,10 @@ namespace Data
                                  "descricao_contrato = @Descricao_contrato," +
                                  "valor_contrato = @Valor_contrato" +
                                  "tipo_contrato = @Tipo_contrato" +
+                                 "data_contrato = @Data_contrato"+
+                                 "tipo = @Tipo"+
                                  "where servicoID = @codigoServico";
+                                 
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -122,6 +127,11 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Descricao_contrato", servico.descricao_contrato);
                     comandoSql.Parameters.AddWithValue("@Valor_contrato", servico.valor_contrato);
                     comandoSql.Parameters.AddWithValue("@Tipo_contrato", servico.tipo_contrato);
+                    comandoSql.Parameters.AddWithValue("@Data_contrato", servico.data_contrato);
+                    comandoSql.Parameters.AddWithValue("@Tipo", servico.tipo);
+
+
+
 
                     conexaoBd.Open();
 
@@ -159,7 +169,7 @@ namespace Data
                                 funcionarioID = Convert.ToInt32(reader["funcionarioID"]),
                                 //----------------------------------------------------//
 
-                                data_servico = reader["data_servico"].ToString(),
+                                data_servico =Convert.ToDateTime( reader["data_servico"]),
 
                                 valor_servico = Convert.ToDecimal(reader["valor_servico"]),
 
@@ -170,6 +180,10 @@ namespace Data
                                 valor_contrato = Convert.ToDecimal(reader["valor_contrato"]),
 
                                 tipo_contrato = reader["tipo_contrato"].ToString(),
+
+                                data_contrato = Convert.ToDateTime(reader["data_contrato"]),
+
+                                tipo = reader ["tipo"].ToString(),
 
                             };
 
