@@ -19,7 +19,7 @@ namespace Data
         public string tipo_contrato { get; set; }
         public DateTime data_contrato { get; set; }
         public string final_contrato { get; set; }
-        public string tipo { get; set; }
+        
 
     }
 }

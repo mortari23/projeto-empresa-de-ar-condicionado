@@ -69,3 +69,8 @@ CREATE TABLE funcionario (
 
 INSERT INTO servico (clienteID,funcionarioID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato)
                 Values(4,4,13/05/2007,2000,'aa','@Descricao_contrato',null,null)
+
+alter table servico add data_contrato date, final_contrato date;
+alter table servico add tipo nvarchar(100);
+alter table servico drop column data_servico;
+alter table servico add data_servico date;

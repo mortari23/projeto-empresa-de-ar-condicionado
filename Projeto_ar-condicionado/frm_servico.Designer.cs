@@ -42,8 +42,6 @@
             this.maskedTextBox_Data_servico = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage_Contrato = new System.Windows.Forms.TabPage();
-            this.txb_funcionario_con = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txb_cliente_con = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox_tipo_contrato = new System.Windows.Forms.ComboBox();
@@ -80,6 +78,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(558, 373);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPage_servico
@@ -118,9 +117,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(141, 62);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 17);
+            this.label7.Size = new System.Drawing.Size(82, 17);
             this.label7.TabIndex = 17;
-            this.label7.Text = "ID Funcionario";
+            this.label7.Text = "Funcionario";
             // 
             // txb_cliente_ser
             // 
@@ -136,9 +135,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(141, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 17);
+            this.label6.Size = new System.Drawing.Size(55, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = " ID Cliente";
+            this.label6.Text = " Cliente";
             // 
             // btn_salvar_servico
             // 
@@ -211,8 +210,6 @@
             // 
             // tabPage_Contrato
             // 
-            this.tabPage_Contrato.Controls.Add(this.txb_funcionario_con);
-            this.tabPage_Contrato.Controls.Add(this.label8);
             this.tabPage_Contrato.Controls.Add(this.txb_cliente_con);
             this.tabPage_Contrato.Controls.Add(this.label9);
             this.tabPage_Contrato.Controls.Add(this.comboBox_tipo_contrato);
@@ -232,24 +229,6 @@
             this.tabPage_Contrato.Text = "Cadastro Contrato";
             this.tabPage_Contrato.UseVisualStyleBackColor = true;
             this.tabPage_Contrato.Click += new System.EventHandler(this.tabPage_Contrato_Click);
-            // 
-            // txb_funcionario_con
-            // 
-            this.txb_funcionario_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_funcionario_con.Location = new System.Drawing.Point(140, 85);
-            this.txb_funcionario_con.Name = "txb_funcionario_con";
-            this.txb_funcionario_con.Size = new System.Drawing.Size(232, 26);
-            this.txb_funcionario_con.TabIndex = 27;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(137, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 17);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Funcionario";
             // 
             // txb_cliente_con
             // 
@@ -286,7 +265,7 @@
             "4º Mensal + Bimestral",
             "5º Mensal + Trimestral",
             "6º Anual"});
-            this.comboBox_tipo_contrato.Location = new System.Drawing.Point(389, 33);
+            this.comboBox_tipo_contrato.Location = new System.Drawing.Point(140, 85);
             this.comboBox_tipo_contrato.Name = "comboBox_tipo_contrato";
             this.comboBox_tipo_contrato.Size = new System.Drawing.Size(131, 28);
             this.comboBox_tipo_contrato.TabIndex = 23;
@@ -295,7 +274,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(386, 15);
+            this.label3.Location = new System.Drawing.Point(137, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 17);
             this.label3.TabIndex = 22;
@@ -388,9 +367,11 @@
             // 
             // dataGridView_consultar
             // 
+            this.dataGridView_consultar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_consultar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_consultar.Location = new System.Drawing.Point(0, 64);
             this.dataGridView_consultar.Name = "dataGridView_consultar";
+            this.dataGridView_consultar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_consultar.Size = new System.Drawing.Size(554, 287);
             this.dataGridView_consultar.TabIndex = 10;
             this.dataGridView_consultar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_consultar_CellContentClick);
@@ -509,8 +490,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txb_cliente_ser;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txb_funcionario_con;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txb_cliente_con;
         private System.Windows.Forms.Label label9;
     }
