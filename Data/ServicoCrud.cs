@@ -21,8 +21,8 @@ namespace Data
         public void IncluiServico(servico servico)
         {
             //query para inserir algo com SQL no banco de dados 
-            const string query = @"INSERT INTO servico (clienteID,funcionarioID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato,data_contrato)
-                Values(@Clienteid,@Funcionarioid,@Data_servico,@Valor_servico,@Descricao_servico,@Descricao_contrato,@Valor_contrato,@Tipo_contrato,@Data_contrato)";
+            const string query = @"INSERT INTO servico (clienteID,data_servico,valor_servico,descricao_servico,descricao_contrato,valor_contrato,tipo_contrato,data_contrato,final_contrato,funcionarioID)
+                Values(@Clienteid,@Data_servico,@Valor_servico,@Descricao_servico,@Descricao_contrato,@Valor_contrato,@Tipo_contrato,@Data_contrato,@Final_contrato,@Funcionarioid)";
 
             //bloco para tratar possiveis erros ao inserir e exebir mensagens
             try
@@ -30,15 +30,17 @@ namespace Data
                 using (var conexaoBd = new SqlConnection(_conexao))
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
-                    comandoSql.Parameters.AddWithValue("@Clienteid", servico.clienteID);
-                    comandoSql.Parameters.AddWithValue("@Funcionarioid", servico.funcionarioID);
-                    comandoSql.Parameters.AddWithValue("@Data_servico", servico.data_servico);
-                    comandoSql.Parameters.AddWithValue("@Valor_servico", servico.valor_servico);
-                    comandoSql.Parameters.AddWithValue("@Descricao_servico", servico.descricao_servico);
-                    comandoSql.Parameters.AddWithValue("@Descricao_contrato", servico.descricao_contrato);
-                    comandoSql.Parameters.AddWithValue("@Valor_contrato", servico.valor_contrato);
-                    comandoSql.Parameters.AddWithValue("@Tipo_contrato", servico.tipo_contrato);
-                    comandoSql.Parameters.AddWithValue("@Data_contrato", servico.data_contrato);
+                    comandoSql.Parameters.AddWithValue("@Clienteid", servico.clienteID.HasValue ? servico.clienteID.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Data_servico", servico.data_servico.HasValue ? servico.data_servico.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Valor_servico", servico.valor_servico.HasValue ? servico.valor_servico.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Descricao_servico", !string.IsNullOrEmpty(servico.descricao_servico) ? servico.descricao_servico : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Descricao_contrato", !string.IsNullOrEmpty(servico.descricao_contrato) ? servico.descricao_contrato : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Valor_contrato", servico.valor_contrato.HasValue ? servico.valor_contrato.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Tipo_contrato", servico.tipo_contrato ?? (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Data_contrato", servico.data_contrato.HasValue ? servico.data_contrato.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Final_contrato", servico.final_contrato.HasValue ? servico.final_contrato.Value : (object)DBNull.Value);
+                    comandoSql.Parameters.AddWithValue("@Funcionarioid", servico.funcionarioID.HasValue ? servico.funcionarioID.Value : (object)DBNull.Value);
+
 
                     conexaoBd.Open();
 
@@ -140,19 +142,18 @@ namespace Data
                 throw new Exception ($"Erro ao alterar o servico : {ex.Message}",ex);
             }
         }
-        public void ObtemServico (int codigoServico)
+        public ServicoCrud Obtemservico(int codigoServico)
         {
-            const string query = "Select * from servico Where  servicoID = @codigoServico";
-                
-            servico servico = null; //variavel para armazenar o cliente
+            const string query = "SELECT * FROM servico WHERE servicoID =@cod";
+            ServicoCrud servico = null;
+
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
                 using (var comando = new SqlCommand(query, conexaoBd))
                 {
-                    comando.Parameters.AddWithValue("@codigoServico", codigoServico );
+                    comando.Parameters.AddWithValue("@cod", codigoServico);
                     conexaoBd.Open();
-
                     using (var reader = comando.ExecuteReader())
                     {
                         if (reader.Read())
@@ -160,27 +161,15 @@ namespace Data
                             servico = new servico
                             {
                                 servicoID = Convert.ToInt32(reader["servicoID"]),
+                                clienteID = Convert.ToInt32(reader["clienteID"].ToString(),
+                                funcionarioID = Convert.ToInt32(reader["funcionarioID"].ToString(),
 
-                                clienteID = Convert.ToInt32(reader["clienteID"]),
+                                
+          
 
-                                funcionarioID = Convert.ToInt32(reader["funcionarioID"]),
-                                //----------------------------------------------------//
 
-                                data_servico =Convert.ToDateTime( reader["data_servico"]),
-
-                                valor_servico = Convert.ToDecimal(reader["valor_servico"]),
-
-                                descricao_servico = reader["descricao_servico"].ToString(),
-
-                                descricao_contrato = reader["descricao_contrato"].ToString(),
-
-                                valor_contrato = Convert.ToDecimal(reader["valor_contrato"]),
-
-                                tipo_contrato = reader["tipo_contrato"].ToString(),
-
-                                data_contrato = Convert.ToDateTime(reader["data_contrato"]),
+                               
                             };
-
                         }
                     }
                 }
@@ -188,9 +177,9 @@ namespace Data
             catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
-            } 
-              
+            }
+            return servico;
         }
-        
+
     }
 }

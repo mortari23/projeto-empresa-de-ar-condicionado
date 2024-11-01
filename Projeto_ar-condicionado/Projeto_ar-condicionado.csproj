@@ -67,6 +67,12 @@
     <Compile Include="frm_alterar_funcionario.Designer.cs">
       <DependentUpon>frm_alterar_funcionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_alterar_serviço.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_alterar_serviço.Designer.cs">
+      <DependentUpon>frm_alterar_serviço.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_servico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_alterar_funcionario.resx">
       <DependentUpon>frm_alterar_funcionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_alterar_serviço.resx">
+      <DependentUpon>frm_alterar_serviço.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_servico.resx">
       <DependentUpon>frm_servico.cs</DependentUpon>

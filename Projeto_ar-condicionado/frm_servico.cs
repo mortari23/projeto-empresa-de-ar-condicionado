@@ -47,15 +47,6 @@ namespace Projeto_ar_condicionado
             servico servico = new servico();
             ServicoCrud servicoCrud = new ServicoCrud(_conexao);
 
-            if (txb_valor_contrato.Text == null)
-            {
-                txb_valor_contrato.Text = " ";
-                txb_cliente_con.Text = " ";
-                txb_descricao_contrato.Text = " ";
-                comboBox_tipo_contrato.Text = " ";
-                maskedTextBox_data_contrato.Text = "  ";
-
-            }
 
            
 
@@ -77,7 +68,7 @@ namespace Projeto_ar_condicionado
                     servico.data_contrato = Convert.ToDateTime(maskedTextBox_data_contrato.Text);
                     servico.valor_contrato = Convert.ToDecimal(txb_valor_servico.Text);
                     servico.descricao_contrato = txb_descricao_contrato.Text;
-                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
+
                    
 
                     servicoCrud.IncluiServico(servico);
@@ -105,7 +96,8 @@ namespace Projeto_ar_condicionado
                     servico.tipo_contrato = comboBox_tipo_contrato.Text;
                     servico.data_servico = Convert.ToDateTime(maskedTextBox_Data_servico.Text);
                     servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
-                    servico.descricao_servico = txb_descricao_servico.Text;
+   
+                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
 
                     servicoCrud.IncluiServico(servico);
                     MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
@@ -157,7 +149,7 @@ namespace Projeto_ar_condicionado
             }
 
 
-            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == "") || (txb_cliente_con.Text == ""))
+            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == "") || (txb_cliente_con.Text == "") || (maskedTextBox_final.Text==""))
                 {
                     MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -171,6 +163,8 @@ namespace Projeto_ar_condicionado
                     servico.valor_servico = Convert.ToDecimal(txb_valor_contrato.Text);
                     servico.descricao_servico = txb_descricao_contrato.Text;
                     servico.clienteID = Convert.ToInt32(txb_cliente_con.Text);
+                    servico.final_contrato= Convert.ToDateTime(maskedTextBox_final.Text);
+                    servico.funcionarioID = 1;
                 
                 
 
@@ -182,6 +176,9 @@ namespace Projeto_ar_condicionado
                     txb_descricao_contrato.Clear();
                     txb_valor_contrato.Clear();
                     maskedTextBox_data_contrato.Clear();
+                    maskedTextBox_final.Clear();
+                    txb_cliente_con.Clear();
+                    
 
                 }
             maskedTextBox_Data_servico.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -239,44 +236,9 @@ namespace Projeto_ar_condicionado
             ListarServico();
         }
 
-        private void ConfigurarDataGrid_servico()
-        {
-           
-            
-                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Regular);
-                dataGridView_consultar.RowHeadersWidth = 25;
+       
 
-                dataGridView_consultar.Columns["servicoID"].Visible = false;
-                dataGridView_consultar.Columns["clienteID"].HeaderText = "Nome Cliente";
-                dataGridView_consultar.Columns["funcionarioID"].HeaderText = "Nome Funcionario";
-                dataGridView_consultar.Columns["data_servico"].HeaderText = "Data";
-                dataGridView_consultar.Columns["valor_servico"].HeaderText = "Valor";
-                dataGridView_consultar.Columns["descricao_servico"].HeaderText = "Descrição";
-                dataGridView_consultar.Columns["descricao_contrato"].Visible = false;
-                dataGridView_consultar.Columns["tipo_contrato"].Visible = false;
-                dataGridView_consultar.Columns["valor_contrato"].Visible = false;
-
-
-
-
-
-        }
-
-        private void ConfigurarDataGrid_contrato()
-        {
-            dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Regular);
-            dataGridView_consultar.RowHeadersWidth = 25;
-
-            dataGridView_consultar.Columns["servicoID"].Visible = false;
-            dataGridView_consultar.Columns["clienteID"].HeaderText = "Nome Cliente";
-            dataGridView_consultar.Columns["funcionarioID"].Visible = false;
-            dataGridView_consultar.Columns["data_servico"].Visible = false;
-            dataGridView_consultar.Columns["valor_servico"].Visible = false;
-            dataGridView_consultar.Columns["descricao_servico"].Visible = false;
-            dataGridView_consultar.Columns["descricao_contrato"].HeaderText = "Descrição";
-            dataGridView_consultar.Columns["valor_contrato"].HeaderText = "valor";
-            dataGridView_consultar.Columns["tipo_contrato"].HeaderText = "tipo";
-        }
+        
 
         private void ListarServico()
         {
@@ -346,9 +308,6 @@ namespace Projeto_ar_condicionado
                 dataGridView_consultar.Columns["clienteID"].Visible = true;
                 dataGridView_consultar.Columns["clienteID"].HeaderText = "Nome Cliente";
 
-                dataGridView_consultar.Columns["funcionarioID"].Visible = false;
-                dataGridView_consultar.Columns["funcionarioID"].HeaderText = "Nome Funcionario";
-
                 dataGridView_consultar.Columns["data_contrato"].Visible = true;
                 dataGridView_consultar.Columns["data_contrato"].HeaderText = "Data";
 
@@ -366,9 +325,11 @@ namespace Projeto_ar_condicionado
 
 
 
-               dataGridView_consultar.Columns["descricao_servico"].Visible = false;
+                dataGridView_consultar.Columns["descricao_servico"].Visible = false;
                 dataGridView_consultar.Columns["valor_servico"].Visible = false;
                 dataGridView_consultar.Columns["data_servico"].Visible = false;
+                dataGridView_consultar.Columns["funcionarioID"].Visible = false;
+                dataGridView_consultar.Columns["tipo"].Visible=false;
 
             }
            
@@ -407,6 +368,21 @@ namespace Projeto_ar_condicionado
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_editar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_consultar.SelectedRows.Count > 0)
+            {
+                int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["servicoID"].Value);
+                var frm_Alterar_servico = new frm_alterar_serviço(codigo);
+                frm_Alterar_servico.ShowDialog();
+                ListarServico();
+            }
+            else
+            {
+                MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
