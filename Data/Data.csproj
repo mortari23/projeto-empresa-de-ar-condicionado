@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteCrud.cs" />
+    <Compile Include="contrato.cs" />
+    <Compile Include="contratoCRUD.cs" />
     <Compile Include="funcionario.cs" />
     <Compile Include="funcionarioCrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

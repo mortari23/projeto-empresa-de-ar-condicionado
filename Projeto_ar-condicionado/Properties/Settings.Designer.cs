@@ -26,8 +26,8 @@ namespace Projeto_ar_condicionado.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SJR0630186W10-1\\SQLEXPRESS; Initial Catalog=ar_ecologico; Integrated " +
-            "Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SJR0630186W10-1\\SQLEXPRESS; Initial Catalog=ar ecologico certo; Integ" +
+            "rated Security=True")]
         public string conexao {
             get {
                 return ((string)(this["conexao"]));

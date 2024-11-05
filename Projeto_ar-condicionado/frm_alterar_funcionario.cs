@@ -42,7 +42,6 @@ namespace Projeto_ar_condicionado
                 txb_rua.Text = funcionario.endereco_funcionario.ToString();
                 txb_bairro.Text = funcionario.bairro_funcionario.ToString();
                 txb_complemento.Text = funcionario.complemento_funcionario.ToString();
-                txb_cidade.Text = funcionario.cidade_funcionario.ToString();
                 maskedTextBox_numero.Text = funcionario.numero_funcionario.ToString();
             }
 
@@ -83,7 +82,6 @@ namespace Projeto_ar_condicionado
                         funcionario.endereco_funcionario = txb_rua.Text;
                         funcionario.bairro_funcionario = txb_bairro.Text;
                         funcionario.complemento_funcionario = txb_complemento.Text;
-                        funcionario.cidade_funcionario = txb_cidade.Text;
                         funcionario.numero_funcionario = maskedTextBox_numero.Text;
 
                         funcionarioCrud.AlterarFuncionario(funcionario);

@@ -14,12 +14,5 @@ namespace Data
         public DateTime? data_servico { get; set; }
         public decimal? valor_servico { get; set; }
         public string descricao_servico { get; set; }
-        public string descricao_contrato { get; set; }
-        public decimal? valor_contrato{ get; set; }
-        public string tipo_contrato { get; set; }
-        public DateTime? data_contrato { get; set; }
-        public DateTime? final_contrato { get; set; }
-        
-
     }
 }

@@ -51,10 +51,7 @@ namespace Projeto_ar_condicionado
                 dsFuncionario = funcionarioCrud.BuscarFuncionario(busca);
 
                 dgv_cliente.DataSource= dsFuncionario;
-                dgv_cliente.DataMember = "funcionario";
-
-           
-          
+                dgv_cliente.DataMember = "funcionario";     
         }
 
 
@@ -200,7 +197,7 @@ namespace Projeto_ar_condicionado
            {
                 if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
                || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") 
-               || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text == ""))
+               || (txb_rua.Text == "") || (txb_bairro.Text == ""))
                 {
                     MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -213,9 +210,7 @@ namespace Projeto_ar_condicionado
                     funcionario.bairro_funcionario = txb_bairro.Text;
                     funcionario.numero_funcionario = maskedTextBox_numero.Text;
                     funcionario.complemento_funcionario = txb_complemento.Text;
-                    funcionario.cidade_funcionario = txb_cidade.Text;
                     funcionario.telefone_funcionario = maskedTextBox_telefone.Text;
-                    funcionario.cidade_funcionario = txb_cidade.Text;
 
                     funcionariocrud.IncluirFuncionario(funcionario);
 

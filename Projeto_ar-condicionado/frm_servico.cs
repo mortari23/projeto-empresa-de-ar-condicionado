@@ -18,11 +18,35 @@ namespace Projeto_ar_condicionado
         public frm_servico_contrato()
         {
             InitializeComponent();
-
+            ConfigurarDataGrid();
             ListarServico();
         }
         //------------------------------------------------------------------------------//
         //focus
+        private void ListarClientes()
+        {
+            ServicoCrud servicoCrud = new ServicoCrud(_conexao);
+
+            string busca = txb_buscar_cadastro.Text.ToString();
+            DataSet dsServico = new DataSet();
+            dsServico = servicoCrud.BuscarServico(busca);
+
+            dataGridView_consultar.DataSource = dsServico;
+            dataGridView_consultar.DataMember = "servico";
+
+        }
+
+        private void ListarContrato()
+        {
+            contratoCRUD contratoCrud = new contratoCRUD(_conexao);
+
+            string busca = txb_buscar_cadastro.Text.ToString();
+            DataSet dscontrato = new DataSet();
+            dscontrato = contratoCrud.BuscarContrato(busca);
+
+            dataGridView_consultar.DataSource = dscontrato;
+            dataGridView_consultar.DataMember = "contrato";
+        }
 
         private void maskedTextBox_Data_servico_KeyDown(object sender, KeyEventArgs e)
         {
@@ -50,8 +74,8 @@ namespace Projeto_ar_condicionado
 
            
 
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage_servico"])
-            {
+            
+            
                
 
                 if ((maskedTextBox_Data_servico.Text == "") || (txb_valor_servico.Text == "") || (txb_descricao_servico.Text == "Descrição") || (txb_descricao_servico.Text == "") || (txb_cliente_ser.Text=="")|| (txb_funcionario_ser.Text=="") )
@@ -65,9 +89,7 @@ namespace Projeto_ar_condicionado
                     servico.data_servico = Convert.ToDateTime(maskedTextBox_Data_servico.Text);
                     servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
                     servico.descricao_servico = txb_descricao_servico.Text;
-                    servico.data_contrato = Convert.ToDateTime(maskedTextBox_data_contrato.Text);
-                    servico.valor_contrato = Convert.ToDecimal(txb_valor_servico.Text);
-                    servico.descricao_contrato = txb_descricao_contrato.Text;
+                    
 
                    
 
@@ -80,36 +102,14 @@ namespace Projeto_ar_condicionado
                     txb_funcionario_ser.Clear();
                     txb_cliente_ser.Clear();
                 }
-            }
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage_Contrato"]) 
-            {
+            
+           
+            
 
-                if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == ""))
-                {
-                    MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    servico.data_contrato = Convert.ToDateTime(maskedTextBox_data_contrato.Text);
-                    servico.valor_contrato = Convert.ToDecimal(txb_valor_servico.Text);
-                    servico.descricao_contrato = txb_descricao_contrato.Text;
-                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
-                    servico.data_servico = Convert.ToDateTime(maskedTextBox_Data_servico.Text);
-                    servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
-   
-                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
-
-                    servicoCrud.IncluiServico(servico);
-                    MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
-
-                    txb_descricao_contrato.Clear();
-                    txb_valor_contrato.Clear();
-                    maskedTextBox_data_contrato.Clear();
-
-                }
+           
 
 
-            }
+            
 
             maskedTextBox_Data_servico.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
@@ -135,52 +135,32 @@ namespace Projeto_ar_condicionado
 
         private void btn_salvar_contrato_Click(object sender, EventArgs e)
         {
-            servico servico = new servico();
-            ServicoCrud servicoCrud = new ServicoCrud(_conexao);
+            contrato contrato = new contrato();
+            contratoCRUD contratoCRUD = new contratoCRUD(_conexao);
 
-            if (txb_valor_servico.Text == null)
+            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == ""))
             {
-                txb_valor_servico.Text = " ";
-                txb_cliente_ser.Text = " ";
-                txb_descricao_servico.Text = " ";
+                MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                contrato.data_contrato = Convert.ToDateTime (maskedTextBox_data_contrato.Text);
+                contrato.valor_contrato = Convert.ToDecimal (txb_valor_servico.Text);
+                contrato.descricao_contrato = txb_descricao_contrato.Text;
+                contrato.tipo_contrato = comboBox_tipo_contrato.Text;
+                contrato.final_contrato = Convert.ToDateTime (maskedTextBox_final.Text);
 
-                maskedTextBox_Data_servico.Text = " ";
+
+                contratoCRUD.IncluiContrato(contrato);
+                MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
+
+                txb_descricao_contrato.Clear();
+                txb_valor_contrato.Clear();
+                maskedTextBox_data_contrato.Clear();
 
             }
 
 
-            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == "") || (txb_cliente_con.Text == "") || (maskedTextBox_final.Text==""))
-                {
-                    MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    servico.data_contrato = Convert.ToDateTime(maskedTextBox_data_contrato.Text);
-                    servico.valor_contrato = Convert.ToDecimal(txb_valor_contrato.Text);
-                    servico.descricao_contrato = txb_descricao_contrato.Text;
-                    servico.tipo_contrato = comboBox_tipo_contrato.Text;
-                    servico.data_servico = Convert.ToDateTime(maskedTextBox_data_contrato.Text);
-                    servico.valor_servico = Convert.ToDecimal(txb_valor_contrato.Text);
-                    servico.descricao_servico = txb_descricao_contrato.Text;
-                    servico.clienteID = Convert.ToInt32(txb_cliente_con.Text);
-                    servico.final_contrato= Convert.ToDateTime(maskedTextBox_final.Text);
-                    servico.funcionarioID = 1;
-                
-                
-
-
-
-                    servicoCrud.IncluiServico(servico);
-                    MessageBox.Show("Contrato cadastrado", "Sucesso", MessageBoxButtons.OK);
-
-                    txb_descricao_contrato.Clear();
-                    txb_valor_contrato.Clear();
-                    maskedTextBox_data_contrato.Clear();
-                    maskedTextBox_final.Clear();
-                    txb_cliente_con.Clear();
-                    
-
-                }
             maskedTextBox_Data_servico.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
 
@@ -208,22 +188,45 @@ namespace Projeto_ar_condicionado
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            if (dataGridView_consultar.Rows.Count > 0)
+            if (comboBox_buscar_tipo.Text == "Serviço")
             {
-                int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["servicoID"].Value);
-
-                var resultado = MessageBox.Show("Deseja Excluir esse Registro", "Pergunta",MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
-
-                if (resultado == DialogResult.Yes)
+                if (dataGridView_consultar.Rows.Count > 0)
                 {
-                    ServicoCrud serCrud = new ServicoCrud(_conexao);
-                    serCrud.ExcluirServico(codigo);
+                    int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["servicoID"].Value);
 
-                    ListarServico();
-                    
+                    var resultado = MessageBox.Show("Deseja Excluir esse Registro", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        ServicoCrud serCrud = new ServicoCrud(_conexao);
+                        serCrud.ExcluirServico(codigo);
+
+                        ListarServico();
+
+                    }
+                }
+            }
+            else if(comboBox_buscar_tipo.Text == "Contrato")
+            {
+                if (dataGridView_consultar.Rows.Count > 0)
+                {
+                    int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["contratoID"].Value);
+
+                    var resultado = MessageBox.Show("Deseja Excluir esse Registro", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        contratoCRUD conCrud = new contratoCRUD(_conexao);
+                        conCrud.ExcluirContrato(codigo);
+
+                        ListarServico();
+
+                    }
                 }
             }
         }
+
+
 
         private void btn_buscar_cadastro_Click(object sender, EventArgs e)
         {
@@ -255,85 +258,14 @@ namespace Projeto_ar_condicionado
         private void comboBox_buscar_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
-            dataGridView_consultar.Columns["servicoID"].Visible = false;
-            dataGridView_consultar.Columns["clienteID"].Visible = false;
-            dataGridView_consultar.Columns["funcionarioID"].Visible = false;
-            dataGridView_consultar.Columns["data_servico"].Visible = false;
-            dataGridView_consultar.Columns["valor_servico"].Visible = false;
-            dataGridView_consultar.Columns["descricao_servico"].Visible = false;
-            dataGridView_consultar.Columns["descricao_contrato"].Visible = false;
-            dataGridView_consultar.Columns["valor_contrato"].Visible = false;
-            dataGridView_consultar.Columns["tipo_contrato"].Visible = false;
-            dataGridView_consultar.Columns["final_contrato"].Visible = false;
-
-            if (comboBox_buscar_tipo.Text == "Serviço")
+            if (comboBox_buscar_tipo.Text == "servico")
             {
-                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Regular);
-                dataGridView_consultar.RowHeadersWidth = 25;
-
-                dataGridView_consultar.Columns["servicoID"].Visible = false;
-
-                dataGridView_consultar.Columns["clienteID"].Visible = true;
-                dataGridView_consultar.Columns["clienteID"].HeaderText = "Nome Cliente";
-
-                dataGridView_consultar.Columns["funcionarioID"].Visible = true;
-                dataGridView_consultar.Columns["funcionarioID"].HeaderText = "Nome Funcionario";
-
-                dataGridView_consultar.Columns["data_servico"].Visible = true;
-                dataGridView_consultar.Columns["data_servico"].HeaderText = "Data";
-
-                dataGridView_consultar.Columns["valor_contrato"].Visible = true;
-                dataGridView_consultar.Columns["valor_servico"].HeaderText = "Valor";
-
-                dataGridView_consultar.Columns["descricao_servico"].Visible = true;
-                dataGridView_consultar.Columns["descricao_servico"].HeaderText = "Descrição";
-
-                dataGridView_consultar.Columns["descricao_contrato"].Visible = false;
-                dataGridView_consultar.Columns["tipo_contrato"].Visible = false;
-                dataGridView_consultar.Columns["valor_contrato"].Visible = false;
-                dataGridView_consultar.Columns["data_contrato"].Visible = false;
-                dataGridView_consultar.Columns["final_contrato"].Visible = false;
-
-
+                ListarServico();
             }
-            else if (comboBox_buscar_tipo.Text == "Contrato")
+            else if (comboBox_buscar_tipo.Text == "contrato")
             {
-                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Regular);
-                dataGridView_consultar.RowHeadersWidth = 25;
-                
-
-                dataGridView_consultar.Columns["servicoID"].Visible = false;
-
-                dataGridView_consultar.Columns["clienteID"].Visible = true;
-                dataGridView_consultar.Columns["clienteID"].HeaderText = "Nome Cliente";
-
-                dataGridView_consultar.Columns["data_contrato"].Visible = true;
-                dataGridView_consultar.Columns["data_contrato"].HeaderText = "Data";
-
-                dataGridView_consultar.Columns["valor_contrato"].Visible = true;
-                dataGridView_consultar.Columns["valor_contrato"].HeaderText = "Valor";
-
-                dataGridView_consultar.Columns["descricao_contrato"].Visible = true;
-                dataGridView_consultar.Columns["descricao_contrato"].HeaderText = "Descrição";
-
-                dataGridView_consultar.Columns["tipo_contrato"].Visible = true;
-                dataGridView_consultar.Columns["tipo_contrato"].HeaderText = "tipo do contrato";
-
-                dataGridView_consultar.Columns["final_contrato"].Visible = true;
-                dataGridView_consultar.Columns["final_contrato"].HeaderText = "Final do Contrato";
-
-
-
-                dataGridView_consultar.Columns["descricao_servico"].Visible = false;
-                dataGridView_consultar.Columns["valor_servico"].Visible = false;
-                dataGridView_consultar.Columns["data_servico"].Visible = false;
-                dataGridView_consultar.Columns["funcionarioID"].Visible = false;
-                dataGridView_consultar.Columns["tipo"].Visible=false;
-
+                ListarContrato();
             }
-           
-
         }
 
         private void dataGridView_consultar_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -383,6 +315,44 @@ namespace Projeto_ar_condicionado
             {
                 MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void AtualizarDataGridView()
+        {
+            ServicoCrud servicoCrud = new ServicoCrud(_conexao);
+            var dataset = servicoCrud.BuscarServico();  // Supondo que `BuscarServico` retorna um `DataSet`
+
+            // Assumindo que o DataGridView chama-se "dataGridViewServicos"
+            dataGridView_consultar.DataSource = dataset.Tables[0];
+        }
+
+        private void ConfigurarDataGrid()
+        {
+            if (comboBox_buscar_tipo.Text == "Serviço")
+            {
+                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+                dataGridView_consultar.RowHeadersWidth = 25;
+                dataGridView_consultar.Columns["servicoID"].Visible = false;
+                dataGridView_consultar.Columns["clienteID"].Visible = false;
+                dataGridView_consultar.Columns["funcionarioID"].Visible = false;
+                dataGridView_consultar.Columns["descricao_serviço"].HeaderText = "Descrição";
+                dataGridView_consultar.Columns["data_serviço"].HeaderText = "Data";
+                dataGridView_consultar.Columns["valor_servico"].HeaderText = "Valor";
+            }
+            else if (comboBox_buscar_tipo.Text == "Contrato")
+            {
+                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+                dataGridView_consultar.RowHeadersWidth =25;
+                dataGridView_consultar.Columns["contratoID"].Visible =false;
+                dataGridView_consultar.Columns["clienteID"].Visible =false;
+                dataGridView_consultar.Columns["descricao_contrato"].HeaderText = "Descrição";
+                dataGridView_consultar.Columns["valor_contrato"].HeaderText= "Valor";
+                dataGridView_consultar.Columns["data_contrato"].HeaderText = "Data Contrato";
+                dataGridView_consultar.Columns["tipo_contrato"].HeaderText = "Tipo Contrato";
+                dataGridView_consultar.Columns["final_contrato"].HeaderText = "Final do Contrato";
+            }
+
+            
         }
     }
 }
