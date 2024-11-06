@@ -18,8 +18,8 @@ namespace Data
         // Método para incluir um serviço no banco de dados
         public void IncluiContrato(contrato contrato)
         {
-            const string query = @"INSERT INTO contrato (clienteID, descricao_contrato, valor_contrato, tipo_contrato, data_contrato, final_contrato,)
-                VALUES(@Clienteid, @Descricao_contrato, @Valor_contrato, @Tipo_contrato, @Data_contrato, @Final_contrato,)";
+            const string query = @"INSERT INTO contrato (clienteID, descricao_contrato, valor_contrato, tipo_contrato, data_contrato, final_contrato)
+                VALUES(@Clienteid, @Descricao_contrato, @Valor_contrato, @Tipo_contrato, @Data_contrato, @Final_contrato)";
 
             try
             {
@@ -27,7 +27,6 @@ namespace Data
                 using (var comandoSql = new SqlCommand(query, conexaoBd))
                 {
                     comandoSql.Parameters.AddWithValue("@Clienteid", contrato.clienteID.HasValue ? contrato.clienteID.Value : (object)DBNull.Value);
-                  
                     comandoSql.Parameters.AddWithValue("@Descricao_contrato", !string.IsNullOrEmpty(contrato.descricao_contrato) ? contrato.descricao_contrato : (object)DBNull.Value);
                     comandoSql.Parameters.AddWithValue("@Valor_contrato", contrato.valor_contrato.HasValue ? contrato.valor_contrato.Value : (object)DBNull.Value);
                     comandoSql.Parameters.AddWithValue("@Tipo_contrato", contrato.tipo_contrato ?? (object)DBNull.Value);

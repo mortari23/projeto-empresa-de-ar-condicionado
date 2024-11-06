@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_servico = new System.Windows.Forms.TabPage();
+            this.btn_ = new System.Windows.Forms.Button();
+            this.btn_pesquisa_ser = new System.Windows.Forms.Button();
             this.txb_funcionario_ser = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txb_cliente_ser = new System.Windows.Forms.TextBox();
@@ -42,6 +44,8 @@
             this.maskedTextBox_Data_servico = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage_Contrato = new System.Windows.Forms.TabPage();
+            this.maskedTextBox_final = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txb_cliente_con = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox_tipo_contrato = new System.Windows.Forms.ComboBox();
@@ -61,9 +65,6 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_fechar = new System.Windows.Forms.Button();
-            this.maskedTextBox_final = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btn_pesquisa_ser = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_servico.SuspendLayout();
             this.tabPage_Contrato.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // tabPage_servico
             // 
+            this.tabPage_servico.Controls.Add(this.btn_);
             this.tabPage_servico.Controls.Add(this.btn_pesquisa_ser);
             this.tabPage_servico.Controls.Add(this.txb_funcionario_ser);
             this.tabPage_servico.Controls.Add(this.label7);
@@ -106,6 +108,25 @@
             this.tabPage_servico.Text = "Cadastro Serviço";
             this.tabPage_servico.UseVisualStyleBackColor = true;
             this.tabPage_servico.Click += new System.EventHandler(this.tabPage_servico_Click);
+            // 
+            // btn_
+            // 
+            this.btn_.Location = new System.Drawing.Point(382, 82);
+            this.btn_.Name = "btn_";
+            this.btn_.Size = new System.Drawing.Size(63, 26);
+            this.btn_.TabIndex = 20;
+            this.btn_.Text = "pesquisar_ser";
+            this.btn_.UseVisualStyleBackColor = true;
+            // 
+            // btn_pesquisa_ser
+            // 
+            this.btn_pesquisa_ser.Location = new System.Drawing.Point(382, 32);
+            this.btn_pesquisa_ser.Name = "btn_pesquisa_ser";
+            this.btn_pesquisa_ser.Size = new System.Drawing.Size(63, 26);
+            this.btn_pesquisa_ser.TabIndex = 19;
+            this.btn_pesquisa_ser.Text = "pesquisar_ser";
+            this.btn_pesquisa_ser.UseVisualStyleBackColor = true;
+            this.btn_pesquisa_ser.Click += new System.EventHandler(this.btn_pesquisa_ser_Click);
             // 
             // txb_funcionario_ser
             // 
@@ -236,6 +257,25 @@
             this.tabPage_Contrato.UseVisualStyleBackColor = true;
             this.tabPage_Contrato.Click += new System.EventHandler(this.tabPage_Contrato_Click);
             // 
+            // maskedTextBox_final
+            // 
+            this.maskedTextBox_final.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBox_final.Location = new System.Drawing.Point(342, 85);
+            this.maskedTextBox_final.Mask = "99/99/9999";
+            this.maskedTextBox_final.Name = "maskedTextBox_final";
+            this.maskedTextBox_final.Size = new System.Drawing.Size(87, 26);
+            this.maskedTextBox_final.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(339, 67);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 17);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Data Final";
+            // 
             // txb_cliente_con
             // 
             this.txb_cliente_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,6 +283,7 @@
             this.txb_cliente_con.Name = "txb_cliente_con";
             this.txb_cliente_con.Size = new System.Drawing.Size(232, 26);
             this.txb_cliente_con.TabIndex = 25;
+            this.txb_cliente_con.TextChanged += new System.EventHandler(this.txb_cliente_con_TextChanged);
             // 
             // label9
             // 
@@ -441,34 +482,6 @@
             this.btn_fechar.UseVisualStyleBackColor = true;
             this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
             // 
-            // maskedTextBox_final
-            // 
-            this.maskedTextBox_final.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox_final.Location = new System.Drawing.Point(342, 85);
-            this.maskedTextBox_final.Mask = "99/99/9999";
-            this.maskedTextBox_final.Name = "maskedTextBox_final";
-            this.maskedTextBox_final.Size = new System.Drawing.Size(87, 26);
-            this.maskedTextBox_final.TabIndex = 27;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(339, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 17);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Data Final";
-            // 
-            // btn_pesquisa_ser
-            // 
-            this.btn_pesquisa_ser.Location = new System.Drawing.Point(382, 32);
-            this.btn_pesquisa_ser.Name = "btn_pesquisa_ser";
-            this.btn_pesquisa_ser.Size = new System.Drawing.Size(63, 26);
-            this.btn_pesquisa_ser.TabIndex = 19;
-            this.btn_pesquisa_ser.Text = "pesquisar_ser";
-            this.btn_pesquisa_ser.UseVisualStyleBackColor = true;
-            // 
             // frm_servico_contrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,7 +491,7 @@
             this.Controls.Add(this.btn_fechar);
             this.Controls.Add(this.tabControl1);
             this.Name = "frm_servico_contrato";
-            this.Text = "Serviço Contrato ";
+            this.Text = "8";
             this.Load += new System.EventHandler(this.frm_servico_contrato_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_servico.ResumeLayout(false);
@@ -530,5 +543,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox_final;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_pesquisa_ser;
+        private System.Windows.Forms.Button btn_;
     }
 }

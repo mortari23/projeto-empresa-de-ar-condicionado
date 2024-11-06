@@ -50,3 +50,13 @@ CREATE TABLE funcionario (
 
  alter table clientes add CEP_cliente varchar(15), bairro_cliente varchar(50);
  alter table funcionario add CEP_funcionario varchar(15), bairro_funcionario varchar(50);
+
+  alter table contrato  drop column descricao_servico;
+
+  select * from clientes
+
+  alter table servico add descricao_serviço nvarchar(200);
+
+  alter table contrato add final_contrato date;
+
+  alter table contrato add data_contrato date;

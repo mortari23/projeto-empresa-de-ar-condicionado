@@ -19,7 +19,7 @@ namespace Projeto_ar_condicionado
         {
             InitializeComponent();
             ConfigurarDataGrid();
-            ListarServico();
+           
         }
         //------------------------------------------------------------------------------//
         //focus
@@ -145,7 +145,7 @@ namespace Projeto_ar_condicionado
             else
             {
                 contrato.data_contrato = Convert.ToDateTime (maskedTextBox_data_contrato.Text);
-                contrato.valor_contrato = Convert.ToDecimal (txb_valor_servico.Text);
+                contrato.valor_contrato = Convert.ToDecimal (txb_valor_contrato.Text);
                 contrato.descricao_contrato = txb_descricao_contrato.Text;
                 contrato.tipo_contrato = comboBox_tipo_contrato.Text;
                 contrato.final_contrato = Convert.ToDateTime (maskedTextBox_final.Text);
@@ -230,13 +230,28 @@ namespace Projeto_ar_condicionado
 
         private void btn_buscar_cadastro_Click(object sender, EventArgs e)
         {
-            if (btn_buscar_cadastro.Text == "")
+            if (comboBox_buscar_tipo.Text == "Serviço")
             {
-                MessageBox.Show("Digite algum nome","erro",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btn_buscar_cadastro.Focus();
-                return;
+
+                if (btn_buscar_cadastro.Text == "")
+                {
+                    MessageBox.Show("Digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btn_buscar_cadastro.Focus();
+                    return;
+                }
+                ListarServico();
             }
-            ListarServico();
+            else if(comboBox_buscar_tipo.Text == "Contrato")
+            {
+                if (btn_buscar_cadastro.Text == "")
+                {
+                    MessageBox.Show("Digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btn_buscar_cadastro.Focus();
+                    return;
+                }
+                ListarContrato();
+            }
+
         }
 
        
@@ -255,14 +270,45 @@ namespace Projeto_ar_condicionado
             dataGridView_consultar.DataMember = "servico";
         }
 
+        private void ConfigurarDataGrid()
+        {
+            if (comboBox_buscar_tipo.Text == "Serviço")
+            {
+                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+                dataGridView_consultar.RowHeadersWidth = 25;
+                dataGridView_consultar.Columns["servicoID"].Visible = false;
+                dataGridView_consultar.Columns["clienteID"].HeaderText = "Cliente"; 
+                dataGridView_consultar.Columns["funcionarioID"].HeaderText = "Funcionario";
+                dataGridView_consultar.Columns["descricao_serviço"].HeaderText = "Descrição";
+                dataGridView_consultar.Columns["data_serviço"].HeaderText = "Data";
+                dataGridView_consultar.Columns["valor_servico"].HeaderText = "Valor";
+            }
+            else if (comboBox_buscar_tipo.Text == "Contrato")
+            {
+                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
+                dataGridView_consultar.RowHeadersWidth = 25;
+                dataGridView_consultar.Columns["contratoID"].Visible = false;
+                dataGridView_consultar.Columns["clienteID"].HeaderText = "Cliente";
+                dataGridView_consultar.Columns["descricao_contrato"].HeaderText = "Descrição";
+                dataGridView_consultar.Columns["valor_contrato"].HeaderText = "Valor";
+                dataGridView_consultar.Columns["data_contrato"].HeaderText = "Data Contrato";
+                dataGridView_consultar.Columns["tipo_contrato"].HeaderText = "Tipo Contrato";
+                dataGridView_consultar.Columns["final_contrato"].HeaderText = "Final do Contrato";
+            }
+
+
+        }
+
+
+
         private void comboBox_buscar_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (comboBox_buscar_tipo.Text == "servico")
+            if (comboBox_buscar_tipo.Text == "Serviço")
             {
                 ListarServico();
             }
-            else if (comboBox_buscar_tipo.Text == "contrato")
+            else if (comboBox_buscar_tipo.Text == "Contrato")
             {
                 ListarContrato();
             }
@@ -326,33 +372,15 @@ namespace Projeto_ar_condicionado
             dataGridView_consultar.DataSource = dataset.Tables[0];
         }
 
-        private void ConfigurarDataGrid()
+        private void txb_cliente_con_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox_buscar_tipo.Text == "Serviço")
-            {
-                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
-                dataGridView_consultar.RowHeadersWidth = 25;
-                dataGridView_consultar.Columns["servicoID"].Visible = false;
-                dataGridView_consultar.Columns["clienteID"].Visible = false;
-                dataGridView_consultar.Columns["funcionarioID"].Visible = false;
-                dataGridView_consultar.Columns["descricao_serviço"].HeaderText = "Descrição";
-                dataGridView_consultar.Columns["data_serviço"].HeaderText = "Data";
-                dataGridView_consultar.Columns["valor_servico"].HeaderText = "Valor";
-            }
-            else if (comboBox_buscar_tipo.Text == "Contrato")
-            {
-                dataGridView_consultar.DefaultCellStyle.Font = new Font("Ariel", 9, FontStyle.Bold);
-                dataGridView_consultar.RowHeadersWidth =25;
-                dataGridView_consultar.Columns["contratoID"].Visible =false;
-                dataGridView_consultar.Columns["clienteID"].Visible =false;
-                dataGridView_consultar.Columns["descricao_contrato"].HeaderText = "Descrição";
-                dataGridView_consultar.Columns["valor_contrato"].HeaderText= "Valor";
-                dataGridView_consultar.Columns["data_contrato"].HeaderText = "Data Contrato";
-                dataGridView_consultar.Columns["tipo_contrato"].HeaderText = "Tipo Contrato";
-                dataGridView_consultar.Columns["final_contrato"].HeaderText = "Final do Contrato";
-            }
 
-            
+        }
+
+        private void btn_pesquisa_ser_Click(object sender, EventArgs e)
+        {
+            var procurar_cliente = new procurar_cliente();
+            procurar_cliente.Show();
         }
     }
 }

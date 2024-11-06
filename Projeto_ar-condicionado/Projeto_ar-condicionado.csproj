@@ -85,6 +85,12 @@
     <Compile Include="frm_tela_inicial.Designer.cs">
       <DependentUpon>frm_tela_inicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="procurar_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="procurar_cliente.Designer.cs">
+      <DependentUpon>procurar_cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_tela_inicial.resx">
       <DependentUpon>frm_tela_inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="procurar_cliente.resx">
+      <DependentUpon>procurar_cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
