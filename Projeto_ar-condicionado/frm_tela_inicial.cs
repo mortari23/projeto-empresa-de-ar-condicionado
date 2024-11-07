@@ -22,13 +22,14 @@ namespace Projeto_ar_condicionado
         private void cadastroDePessoasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form1 = new form1();          
-            form1.Show();
+            form1.ShowDialog();
         }
 
         private void cadastroDeServiçoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Instanciar o formulário frm_servico_contrato sem parâmetro
             var frm_servico = new frm_servico_contrato();
-            frm_servico.Show();
+            frm_servico.ShowDialog();
         }
     }
 }

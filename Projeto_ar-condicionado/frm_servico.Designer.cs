@@ -65,6 +65,7 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_fechar = new System.Windows.Forms.Button();
+            this.btn_procurar_contrato = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_servico.SuspendLayout();
             this.tabPage_Contrato.SuspendLayout();
@@ -117,6 +118,7 @@
             this.btn_.TabIndex = 20;
             this.btn_.Text = "pesquisar_ser";
             this.btn_.UseVisualStyleBackColor = true;
+            this.btn_.Click += new System.EventHandler(this.btn__Click);
             // 
             // btn_pesquisa_ser
             // 
@@ -235,6 +237,7 @@
             // 
             // tabPage_Contrato
             // 
+            this.tabPage_Contrato.Controls.Add(this.btn_procurar_contrato);
             this.tabPage_Contrato.Controls.Add(this.maskedTextBox_final);
             this.tabPage_Contrato.Controls.Add(this.label8);
             this.tabPage_Contrato.Controls.Add(this.txb_cliente_con);
@@ -482,6 +485,15 @@
             this.btn_fechar.UseVisualStyleBackColor = true;
             this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
             // 
+            // btn_procurar_contrato
+            // 
+            this.btn_procurar_contrato.Location = new System.Drawing.Point(378, 34);
+            this.btn_procurar_contrato.Name = "btn_procurar_contrato";
+            this.btn_procurar_contrato.Size = new System.Drawing.Size(63, 26);
+            this.btn_procurar_contrato.TabIndex = 28;
+            this.btn_procurar_contrato.Text = "pesquisar_ser";
+            this.btn_procurar_contrato.UseVisualStyleBackColor = true;
+            // 
             // frm_servico_contrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,7 +503,7 @@
             this.Controls.Add(this.btn_fechar);
             this.Controls.Add(this.tabControl1);
             this.Name = "frm_servico_contrato";
-            this.Text = "8";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frm_servico_contrato_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_servico.ResumeLayout(false);
@@ -544,5 +556,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_pesquisa_ser;
         private System.Windows.Forms.Button btn_;
+        private System.Windows.Forms.Button btn_procurar_contrato;
     }
 }

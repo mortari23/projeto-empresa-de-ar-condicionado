@@ -89,6 +89,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frm_tela_inicial";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_tela_inicial";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

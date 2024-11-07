@@ -481,6 +481,7 @@
             this.Controls.Add(this.btn_fechar);
             this.Controls.Add(this.tabControl_busca);
             this.Name = "form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ar Ecologico";
             this.Load += new System.EventHandler(this.frm_dastro_busca_Load);
             this.tabControl_busca.ResumeLayout(false);

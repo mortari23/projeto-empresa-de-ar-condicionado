@@ -37,37 +37,42 @@
             // dataGridView_cliente
             // 
             this.dataGridView_cliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_cliente.Location = new System.Drawing.Point(1, 40);
+            this.dataGridView_cliente.Location = new System.Drawing.Point(12, 41);
             this.dataGridView_cliente.Name = "dataGridView_cliente";
+            this.dataGridView_cliente.ReadOnly = true;
+            this.dataGridView_cliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_cliente.Size = new System.Drawing.Size(451, 293);
             this.dataGridView_cliente.TabIndex = 0;
+            this.dataGridView_cliente.DoubleClick += new System.EventHandler(this.dataGridView_cliente_DoubleClick);
             // 
             // txb_buscar_cadastro
             // 
-            this.txb_buscar_cadastro.Location = new System.Drawing.Point(1, 14);
+            this.txb_buscar_cadastro.Location = new System.Drawing.Point(12, 15);
             this.txb_buscar_cadastro.Name = "txb_buscar_cadastro";
             this.txb_buscar_cadastro.Size = new System.Drawing.Size(370, 20);
             this.txb_buscar_cadastro.TabIndex = 9;
             // 
             // btn_buscar_cadastro
             // 
-            this.btn_buscar_cadastro.Location = new System.Drawing.Point(377, 12);
+            this.btn_buscar_cadastro.Location = new System.Drawing.Point(388, 14);
             this.btn_buscar_cadastro.Name = "btn_buscar_cadastro";
             this.btn_buscar_cadastro.Size = new System.Drawing.Size(75, 23);
             this.btn_buscar_cadastro.TabIndex = 11;
             this.btn_buscar_cadastro.Text = "Buscar";
             this.btn_buscar_cadastro.UseVisualStyleBackColor = true;
+            this.btn_buscar_cadastro.Click += new System.EventHandler(this.btn_buscar_cadastro_Click);
             // 
             // procurar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(453, 333);
+            this.ClientSize = new System.Drawing.Size(483, 347);
             this.Controls.Add(this.btn_buscar_cadastro);
             this.Controls.Add(this.txb_buscar_cadastro);
             this.Controls.Add(this.dataGridView_cliente);
             this.Name = "procurar_cliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "procurar_cliente";
             this.Load += new System.EventHandler(this.procurar_cliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cliente)).EndInit();

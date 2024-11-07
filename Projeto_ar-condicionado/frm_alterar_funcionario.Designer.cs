@@ -345,6 +345,7 @@
             this.Controls.Add(this.txb_nome);
             this.Controls.Add(this.label1);
             this.Name = "frm_alterar_funcionario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alterar Funcionario";
             this.groupBox_endereço.ResumeLayout(false);
             this.groupBox_endereço.PerformLayout();

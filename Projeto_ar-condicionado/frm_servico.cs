@@ -18,9 +18,35 @@ namespace Projeto_ar_condicionado
         public frm_servico_contrato()
         {
             InitializeComponent();
-            ConfigurarDataGrid();
            
+            ConfigurarDataGrid();
+
+            
+
         }
+
+        public void SetClienteInfo(string clienteInfo)
+        {
+            // Aqui você pode atualizar o TextBox com o valor passado
+            txb_cliente_ser.Text = clienteInfo; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
+
+        public void SetFuncionarioInfo(string funcionarioInfo)
+        {
+            // Aqui você pode atualizar o TextBox com o valor passado
+            txb_funcionario_ser.Text = funcionarioInfo; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
+
+        public void SetClienteInfo_contrato(string clienteInfo_contrato)
+        {
+            // Aqui você pode atualizar o TextBox com o valor passado
+            txb_cliente_ser.Text = clienteInfo_contrato; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
+
+
+
+
+
         //------------------------------------------------------------------------------//
         //focus
         private void ListarClientes()
@@ -380,7 +406,18 @@ namespace Projeto_ar_condicionado
         private void btn_pesquisa_ser_Click(object sender, EventArgs e)
         {
             var procurar_cliente = new procurar_cliente();
-            procurar_cliente.Show();
+            procurar_cliente.ShowDialog();
+        }
+
+        public void DefinirClienteID(int clienteID)
+        {
+            txb_cliente_ser.Text = clienteID.ToString();
+        }
+
+        private void btn__Click(object sender, EventArgs e)
+        {
+            var frm_procurar_funcionario = new frm_procurar_funcionario();
+            frm_procurar_funcionario.ShowDialog();
         }
     }
 }

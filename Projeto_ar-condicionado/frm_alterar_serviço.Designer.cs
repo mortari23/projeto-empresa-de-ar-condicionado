@@ -182,6 +182,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Name = "frm_alterar_serviço";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_alterar_serviço";
             this.ResumeLayout(false);
             this.PerformLayout();

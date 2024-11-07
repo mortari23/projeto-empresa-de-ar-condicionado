@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Projeto_ar_condicionado
@@ -79,6 +80,53 @@ namespace Projeto_ar_condicionado
 
         private void procurar_cliente_Load(object sender, EventArgs e)
         {
+            ListarClientes();
+        }
+
+        private void dataGridView_cliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Evento não utilizado, mas aqui está o código que poderia ser adicionado se necessário
+        }
+
+        // Método para o evento DoubleClick do DataGridView
+       
+
+        private void dataGridView_cliente_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridView_cliente.CurrentRow != null)
+            {
+                // Obtém o valor da célula "nome_cliente" da linha selecionada
+                string nomeCliente = dataGridView_cliente.CurrentRow.Cells["nome_cliente"].Value.ToString();
+
+                // Procura por uma instância aberta do formulário que contém o TextBox
+                frm_servico_contrato frmServicoContratoAberto = Application.OpenForms.OfType<frm_servico_contrato>().FirstOrDefault();
+
+                if (frmServicoContratoAberto != null)
+                {
+                    // Se já estiver aberto, traz o formulário para frente e passa o valor
+                    frmServicoContratoAberto.BringToFront();
+                    frmServicoContratoAberto.SetClienteInfo(nomeCliente);  // Passa a informação para o método no formulário
+                }
+                else
+                {
+                    // Se o formulário não estiver aberto, cria e abre uma nova instância
+                    frm_servico_contrato frmServicoContratoNovo = new frm_servico_contrato();
+                    frmServicoContratoNovo.SetClienteInfo(nomeCliente);  // Passa a informação para o método no formulário
+                    frmServicoContratoNovo.Show();
+                }
+            }
+
+            this.Close();
+        }
+
+        private void btn_buscar_cadastro_Click(object sender, EventArgs e)
+        {
+            if (txb_buscar_cadastro.Text == "")
+            {
+                MessageBox.Show("digite algum nome", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txb_buscar_cadastro.Focus();
+                return;
+            }
             ListarClientes();
         }
     }
