@@ -46,8 +46,20 @@ namespace Data
         // Método para buscar serviços
         public DataSet BuscarServico(string pesquisa = "")
         {
-            const string query = "SELECT * FROM servico WHERE servicoID LIKE @Pesquisa";
-
+            //const string query = "SELECT * FROM servico WHERE servicoID LIKE @Pesquisa";
+            const string query = @"SELECT 
+    s.servicoID,
+    c.nome_cliente AS nome_cliente,
+    f.nome_funcionario AS nome_funcionario,
+    s.data_servico,
+    s.valor_servico,
+    s.descricao_serviço
+FROM 
+    servico s
+INNER JOIN 
+    clientes c ON s.clienteID = c.clienteID
+INNER JOIN 
+    funcionario f ON s.funcionarioID = f.funcionarioID";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -150,7 +162,7 @@ namespace Data
                                
                                 valor_servico = reader["valor_servico"] != DBNull.Value ? decimal.Parse(reader["valor_servico"].ToString().Trim()) : (decimal?)null,
                                
-                                descricao_servico = reader["descricao_servico"] != DBNull.Value ? reader["descricao_servico"].ToString().Trim() : null,
+                                descricao_servico = reader["descricao_serviço"] != DBNull.Value ? reader["descricao_serviço"].ToString().Trim() : null,
                                
                             };
                         }

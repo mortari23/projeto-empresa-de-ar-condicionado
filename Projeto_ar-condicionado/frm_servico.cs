@@ -25,10 +25,14 @@ namespace Projeto_ar_condicionado
 
         }
 
-        public void SetClienteInfo(string clienteInfo)
+        public void SetClienteInfo(string clienteInfo )
         {
             // Aqui você pode atualizar o TextBox com o valor passado
             txb_cliente_ser.Text = clienteInfo; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
+        public void SetClienteInfoID(string idcliente)
+        {
+            txb_idcliente.Text = idcliente;
         }
 
         public void SetFuncionarioInfo(string funcionarioInfo)
@@ -37,13 +41,25 @@ namespace Projeto_ar_condicionado
             txb_funcionario_ser.Text = funcionarioInfo; // Supondo que txt_nome_cliente seja o nome do seu TextBox
         }
 
-        public void SetClienteInfo_contrato(string clienteInfo_contrato)
+
+
+        public void SetFuncionarioInfoID(string idfuncionario)
         {
-            // Aqui você pode atualizar o TextBox com o valor passado
-            txb_cliente_ser.Text = clienteInfo_contrato; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+            txb_idfuncionario.Text = idfuncionario;
         }
 
 
+        public void SetClienteInfo_contrato(string nome_cliente)
+        {
+            // Aqui você pode atualizar o TextBox com o valor passado
+            txb_cliente_con.Text = nome_cliente; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
+
+        public void SetClienteInfo_contratoID(string idCliente)
+        {
+            // Aqui você pode atualizar o TextBox com o valor passado
+            txb_idcliente2.Text = idCliente; // Supondo que txt_nome_cliente seja o nome do seu TextBox
+        }
 
 
 
@@ -110,8 +126,8 @@ namespace Projeto_ar_condicionado
                 }
                 else
                 {
-                    servico.clienteID = Convert.ToInt32(txb_cliente_ser.Text);
-                    servico.funcionarioID = Convert.ToInt32(txb_funcionario_ser.Text);
+                    servico.clienteID = Convert.ToInt32(txb_idcliente.Text);
+                    servico.funcionarioID = Convert.ToInt32(txb_idfuncionario.Text);
                     servico.data_servico = Convert.ToDateTime(maskedTextBox_Data_servico.Text);
                     servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
                     servico.descricao_servico = txb_descricao_servico.Text;
@@ -124,7 +140,7 @@ namespace Projeto_ar_condicionado
 
                     txb_descricao_servico.Clear();
                     txb_valor_servico.Clear();
-                    maskedTextBox_Data_servico.Clear();
+                   
                     txb_funcionario_ser.Clear();
                     txb_cliente_ser.Clear();
                 }
@@ -164,12 +180,13 @@ namespace Projeto_ar_condicionado
             contrato contrato = new contrato();
             contratoCRUD contratoCRUD = new contratoCRUD(_conexao);
 
-            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == ""))
+            if ((maskedTextBox_data_contrato.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == "") || (maskedTextBox_final.Text =="__/__/____"))
             {
                 MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                contrato.clienteID = Convert.ToInt32 (txb_idcliente2.Text);
                 contrato.data_contrato = Convert.ToDateTime (maskedTextBox_data_contrato.Text);
                 contrato.valor_contrato = Convert.ToDecimal (txb_valor_contrato.Text);
                 contrato.descricao_contrato = txb_descricao_contrato.Text;
@@ -182,7 +199,11 @@ namespace Projeto_ar_condicionado
 
                 txb_descricao_contrato.Clear();
                 txb_valor_contrato.Clear();
-                maskedTextBox_data_contrato.Clear();
+            
+                comboBox_tipo_contrato.Text="";
+                maskedTextBox_final.Clear();
+                txb_cliente_con.Clear();
+
 
             }
 
@@ -418,6 +439,12 @@ namespace Projeto_ar_condicionado
         {
             var frm_procurar_funcionario = new frm_procurar_funcionario();
             frm_procurar_funcionario.ShowDialog();
+        }
+
+        private void btn_procurar_contrato_Click(object sender, EventArgs e)
+        {
+            var procurar_contrato = new procurar_contrato();
+            procurar_contrato.ShowDialog();
         }
     }
 }

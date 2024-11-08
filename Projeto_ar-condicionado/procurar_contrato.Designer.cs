@@ -28,49 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgv_procurar_cliente = new System.Windows.Forms.DataGridView();
-            this.btn_procurar_contrato = new System.Windows.Forms.Button();
-            this.txb_procurar_contrato = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_procurar_cliente)).BeginInit();
+            this.dataGridView_cliente = new System.Windows.Forms.DataGridView();
+            this.btn_buscar_cadastro = new System.Windows.Forms.Button();
+            this.txb_buscar_cadastro = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cliente)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgv_procurar_cliente
+            // dataGridView_cliente
             // 
-            this.dgv_procurar_cliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_procurar_cliente.Location = new System.Drawing.Point(28, 60);
-            this.dgv_procurar_cliente.Name = "dgv_procurar_cliente";
-            this.dgv_procurar_cliente.Size = new System.Drawing.Size(498, 295);
-            this.dgv_procurar_cliente.TabIndex = 0;
-            this.dgv_procurar_cliente.DoubleClick += new System.EventHandler(this.dgv_procurar_cliente_DoubleClick);
+            this.dataGridView_cliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_cliente.Location = new System.Drawing.Point(12, 41);
+            this.dataGridView_cliente.Name = "dataGridView_cliente";
+            this.dataGridView_cliente.Size = new System.Drawing.Size(451, 293);
+            this.dataGridView_cliente.TabIndex = 0;
+            this.dataGridView_cliente.DoubleClick += new System.EventHandler(this.dgv_procurar_cliente_DoubleClick);
             // 
-            // btn_procurar_contrato
+            // btn_buscar_cadastro
             // 
-            this.btn_procurar_contrato.Location = new System.Drawing.Point(451, 34);
-            this.btn_procurar_contrato.Name = "btn_procurar_contrato";
-            this.btn_procurar_contrato.Size = new System.Drawing.Size(85, 20);
-            this.btn_procurar_contrato.TabIndex = 1;
-            this.btn_procurar_contrato.Text = "buscar";
-            this.btn_procurar_contrato.UseVisualStyleBackColor = true;
-            this.btn_procurar_contrato.Click += new System.EventHandler(this.btn_procurar_contrato_Click);
+            this.btn_buscar_cadastro.Location = new System.Drawing.Point(388, 15);
+            this.btn_buscar_cadastro.Name = "btn_buscar_cadastro";
+            this.btn_buscar_cadastro.Size = new System.Drawing.Size(75, 20);
+            this.btn_buscar_cadastro.TabIndex = 1;
+            this.btn_buscar_cadastro.Text = "Buscar";
+            this.btn_buscar_cadastro.UseVisualStyleBackColor = true;
+            this.btn_buscar_cadastro.Click += new System.EventHandler(this.btn_procurar_contrato_Click);
             // 
-            // txb_procurar_contrato
+            // txb_buscar_cadastro
             // 
-            this.txb_procurar_contrato.Location = new System.Drawing.Point(28, 34);
-            this.txb_procurar_contrato.Name = "txb_procurar_contrato";
-            this.txb_procurar_contrato.Size = new System.Drawing.Size(405, 20);
-            this.txb_procurar_contrato.TabIndex = 2;
+            this.txb_buscar_cadastro.Location = new System.Drawing.Point(12, 15);
+            this.txb_buscar_cadastro.Name = "txb_buscar_cadastro";
+            this.txb_buscar_cadastro.Size = new System.Drawing.Size(370, 20);
+            this.txb_buscar_cadastro.TabIndex = 2;
             // 
             // procurar_contrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 367);
-            this.Controls.Add(this.txb_procurar_contrato);
-            this.Controls.Add(this.btn_procurar_contrato);
-            this.Controls.Add(this.dgv_procurar_cliente);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(483, 347);
+            this.Controls.Add(this.txb_buscar_cadastro);
+            this.Controls.Add(this.btn_buscar_cadastro);
+            this.Controls.Add(this.dataGridView_cliente);
             this.Name = "procurar_contrato";
             this.Text = "procurar_contrato";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_procurar_cliente)).EndInit();
+            this.Load += new System.EventHandler(this.procurar_contrato_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,8 +80,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgv_procurar_cliente;
-        private System.Windows.Forms.Button btn_procurar_contrato;
-        private System.Windows.Forms.TextBox txb_procurar_contrato;
+        private System.Windows.Forms.DataGridView dataGridView_cliente;
+        private System.Windows.Forms.Button btn_buscar_cadastro;
+        private System.Windows.Forms.TextBox txb_buscar_cadastro;
     }
 }

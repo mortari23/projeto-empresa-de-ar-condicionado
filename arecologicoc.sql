@@ -60,3 +60,39 @@ CREATE TABLE funcionario (
   alter table contrato add final_contrato date;
 
   alter table contrato add data_contrato date;
+
+  select c.nome_cliente, f.nome_funcionario
+  from clientes c
+  inner join funcionario f on c.clienteID = c.clienteID
+  group by c.nome_cliente,f.nome_funcionario;
+
+  SELECT 
+    s.contratoID,
+    c.nome_cliente AS nome_cliente,
+    s.data_contrato,
+    s.valor_contrato,
+    s.descricao_contrato
+	s. tipo_contrato
+	s.final_contrato
+FROM 
+    contrato s
+INNER JOIN 
+    clientes c ON s.clienteID = c.clienteID;
+
+SELECT 
+    ct.contratoID,
+    c.nome_cliente AS nome_cliente,
+    ct.descricao_contrato,
+    ct.valor_contrato,
+    ct.tipo_contrato,
+    ct.final_contrato,
+    ct.data_contrato
+FROM 
+    contrato ct
+INNER JOIN 
+    clientes c ON ct.clienteID = c.clienteID;
+
+select * from contrato
+
+
+

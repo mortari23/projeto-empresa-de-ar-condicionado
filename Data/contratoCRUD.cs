@@ -45,7 +45,18 @@ namespace Data
         }
         public DataSet BuscarContrato(string pesquisa = "")
         {
-            const string query = "SELECT * FROM contrato WHERE contratoID LIKE @Pesquisa";
+            const string query = @"SELECT 
+                ct.contratoID,
+                c.nome_cliente AS nome_cliente,
+                ct.descricao_contrato,
+                ct.valor_contrato,
+                ct.tipo_contrato,
+                ct.final_contrato,
+                ct.data_contrato
+                FROM 
+                contrato ct
+               INNER JOIN 
+               clientes c ON ct.clienteID = c.clienteID;";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))

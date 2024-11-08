@@ -28,7 +28,7 @@ namespace Projeto_ar_condicionado
                 dataGridView_cliente.DataSource = dsCliente;
                 dataGridView_cliente.DataMember = "clientes";
 
-                // Configurar as colunas somente se houver dados
+                
                 ConfigurarDataGrid();
             }
             else
@@ -43,7 +43,7 @@ namespace Projeto_ar_condicionado
             dataGridView_cliente.DefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
             dataGridView_cliente.RowHeadersWidth = 25;
 
-            // Verificar se as colunas existem antes de configurá-las
+           
             if (dataGridView_cliente.Columns["clienteID"] != null)
                 dataGridView_cliente.Columns["clienteID"].Visible = false;
 
@@ -85,35 +85,34 @@ namespace Projeto_ar_condicionado
 
         private void dataGridView_cliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Evento não utilizado, mas aqui está o código que poderia ser adicionado se necessário
+            
         }
 
-        // Método para o evento DoubleClick do DataGridView
+       
        
 
         private void dataGridView_cliente_DoubleClick(object sender, EventArgs e)
         {
             if (dataGridView_cliente.CurrentRow != null)
             {
-                // Obtém o valor da célula "nome_cliente" da linha selecionada
+               
                 string nomeCliente = dataGridView_cliente.CurrentRow.Cells["nome_cliente"].Value.ToString();
+                string idcliente = dataGridView_cliente.CurrentRow.Cells["clienteID"].Value.ToString();
 
-                // Procura por uma instância aberta do formulário que contém o TextBox
+               
                 frm_servico_contrato frmServicoContratoAberto = Application.OpenForms.OfType<frm_servico_contrato>().FirstOrDefault();
 
                 if (frmServicoContratoAberto != null)
                 {
-                    // Se já estiver aberto, traz o formulário para frente e passa o valor
+                   
                     frmServicoContratoAberto.BringToFront();
-                    frmServicoContratoAberto.SetClienteInfo(nomeCliente);  // Passa a informação para o método no formulário
+                    frmServicoContratoAberto.SetClienteInfo(nomeCliente);
+                    frmServicoContratoAberto.SetClienteInfoID(idcliente);
+
+
                 }
-                else
-                {
-                    // Se o formulário não estiver aberto, cria e abre uma nova instância
-                    frm_servico_contrato frmServicoContratoNovo = new frm_servico_contrato();
-                    frmServicoContratoNovo.SetClienteInfo(nomeCliente);  // Passa a informação para o método no formulário
-                    frmServicoContratoNovo.Show();
-                }
+
+
             }
 
             this.Close();

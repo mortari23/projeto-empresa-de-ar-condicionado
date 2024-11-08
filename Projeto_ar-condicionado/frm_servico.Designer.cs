@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_servico = new System.Windows.Forms.TabPage();
+            this.txb_idfuncionario = new System.Windows.Forms.TextBox();
+            this.txb_idcliente = new System.Windows.Forms.TextBox();
             this.btn_ = new System.Windows.Forms.Button();
             this.btn_pesquisa_ser = new System.Windows.Forms.Button();
             this.txb_funcionario_ser = new System.Windows.Forms.TextBox();
@@ -44,6 +46,8 @@
             this.maskedTextBox_Data_servico = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage_Contrato = new System.Windows.Forms.TabPage();
+            this.txb_idcliente2 = new System.Windows.Forms.TextBox();
+            this.btn_procurar_contrato = new System.Windows.Forms.Button();
             this.maskedTextBox_final = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txb_cliente_con = new System.Windows.Forms.TextBox();
@@ -65,7 +69,6 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_fechar = new System.Windows.Forms.Button();
-            this.btn_procurar_contrato = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_servico.SuspendLayout();
             this.tabPage_Contrato.SuspendLayout();
@@ -88,6 +91,8 @@
             // 
             // tabPage_servico
             // 
+            this.tabPage_servico.Controls.Add(this.txb_idfuncionario);
+            this.tabPage_servico.Controls.Add(this.txb_idcliente);
             this.tabPage_servico.Controls.Add(this.btn_);
             this.tabPage_servico.Controls.Add(this.btn_pesquisa_ser);
             this.tabPage_servico.Controls.Add(this.txb_funcionario_ser);
@@ -110,9 +115,25 @@
             this.tabPage_servico.UseVisualStyleBackColor = true;
             this.tabPage_servico.Click += new System.EventHandler(this.tabPage_servico_Click);
             // 
+            // txb_idfuncionario
+            // 
+            this.txb_idfuncionario.Location = new System.Drawing.Point(472, 89);
+            this.txb_idfuncionario.Name = "txb_idfuncionario";
+            this.txb_idfuncionario.Size = new System.Drawing.Size(40, 20);
+            this.txb_idfuncionario.TabIndex = 23;
+            this.txb_idfuncionario.Visible = false;
+            // 
+            // txb_idcliente
+            // 
+            this.txb_idcliente.Location = new System.Drawing.Point(472, 39);
+            this.txb_idcliente.Name = "txb_idcliente";
+            this.txb_idcliente.Size = new System.Drawing.Size(40, 20);
+            this.txb_idcliente.TabIndex = 22;
+            this.txb_idcliente.Visible = false;
+            // 
             // btn_
             // 
-            this.btn_.Location = new System.Drawing.Point(382, 82);
+            this.btn_.Location = new System.Drawing.Point(370, 83);
             this.btn_.Name = "btn_";
             this.btn_.Size = new System.Drawing.Size(63, 26);
             this.btn_.TabIndex = 20;
@@ -122,7 +143,7 @@
             // 
             // btn_pesquisa_ser
             // 
-            this.btn_pesquisa_ser.Location = new System.Drawing.Point(382, 32);
+            this.btn_pesquisa_ser.Location = new System.Drawing.Point(370, 33);
             this.btn_pesquisa_ser.Name = "btn_pesquisa_ser";
             this.btn_pesquisa_ser.Size = new System.Drawing.Size(63, 26);
             this.btn_pesquisa_ser.TabIndex = 19;
@@ -133,16 +154,17 @@
             // txb_funcionario_ser
             // 
             this.txb_funcionario_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_funcionario_ser.Location = new System.Drawing.Point(144, 82);
+            this.txb_funcionario_ser.Location = new System.Drawing.Point(135, 82);
             this.txb_funcionario_ser.Name = "txb_funcionario_ser";
-            this.txb_funcionario_ser.Size = new System.Drawing.Size(232, 26);
+            this.txb_funcionario_ser.ReadOnly = true;
+            this.txb_funcionario_ser.Size = new System.Drawing.Size(229, 26);
             this.txb_funcionario_ser.TabIndex = 18;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(141, 62);
+            this.label7.Location = new System.Drawing.Point(132, 62);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 17);
             this.label7.TabIndex = 17;
@@ -151,16 +173,17 @@
             // txb_cliente_ser
             // 
             this.txb_cliente_ser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txb_cliente_ser.Location = new System.Drawing.Point(144, 33);
+            this.txb_cliente_ser.Location = new System.Drawing.Point(135, 33);
             this.txb_cliente_ser.Name = "txb_cliente_ser";
-            this.txb_cliente_ser.Size = new System.Drawing.Size(232, 26);
+            this.txb_cliente_ser.ReadOnly = true;
+            this.txb_cliente_ser.Size = new System.Drawing.Size(229, 26);
             this.txb_cliente_ser.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(141, 13);
+            this.label6.Location = new System.Drawing.Point(132, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 17);
             this.label6.TabIndex = 15;
@@ -237,6 +260,7 @@
             // 
             // tabPage_Contrato
             // 
+            this.tabPage_Contrato.Controls.Add(this.txb_idcliente2);
             this.tabPage_Contrato.Controls.Add(this.btn_procurar_contrato);
             this.tabPage_Contrato.Controls.Add(this.maskedTextBox_final);
             this.tabPage_Contrato.Controls.Add(this.label8);
@@ -259,6 +283,24 @@
             this.tabPage_Contrato.Text = "Cadastro Contrato";
             this.tabPage_Contrato.UseVisualStyleBackColor = true;
             this.tabPage_Contrato.Click += new System.EventHandler(this.tabPage_Contrato_Click);
+            // 
+            // txb_idcliente2
+            // 
+            this.txb_idcliente2.Location = new System.Drawing.Point(465, 34);
+            this.txb_idcliente2.Name = "txb_idcliente2";
+            this.txb_idcliente2.Size = new System.Drawing.Size(40, 20);
+            this.txb_idcliente2.TabIndex = 29;
+            this.txb_idcliente2.Visible = false;
+            // 
+            // btn_procurar_contrato
+            // 
+            this.btn_procurar_contrato.Location = new System.Drawing.Point(378, 34);
+            this.btn_procurar_contrato.Name = "btn_procurar_contrato";
+            this.btn_procurar_contrato.Size = new System.Drawing.Size(63, 26);
+            this.btn_procurar_contrato.TabIndex = 28;
+            this.btn_procurar_contrato.Text = "pesquisar_ser";
+            this.btn_procurar_contrato.UseVisualStyleBackColor = true;
+            this.btn_procurar_contrato.Click += new System.EventHandler(this.btn_procurar_contrato_Click);
             // 
             // maskedTextBox_final
             // 
@@ -485,15 +527,6 @@
             this.btn_fechar.UseVisualStyleBackColor = true;
             this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
             // 
-            // btn_procurar_contrato
-            // 
-            this.btn_procurar_contrato.Location = new System.Drawing.Point(378, 34);
-            this.btn_procurar_contrato.Name = "btn_procurar_contrato";
-            this.btn_procurar_contrato.Size = new System.Drawing.Size(63, 26);
-            this.btn_procurar_contrato.TabIndex = 28;
-            this.btn_procurar_contrato.Text = "pesquisar_ser";
-            this.btn_procurar_contrato.UseVisualStyleBackColor = true;
-            // 
             // frm_servico_contrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,5 +590,8 @@
         private System.Windows.Forms.Button btn_pesquisa_ser;
         private System.Windows.Forms.Button btn_;
         private System.Windows.Forms.Button btn_procurar_contrato;
+        private System.Windows.Forms.TextBox txb_idfuncionario;
+        private System.Windows.Forms.TextBox txb_idcliente;
+        private System.Windows.Forms.TextBox txb_idcliente2;
     }
 }

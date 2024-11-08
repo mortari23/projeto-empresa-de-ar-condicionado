@@ -10,6 +10,7 @@ namespace Data
     {
         public int? servicoID {  get; set; } 
         public int? clienteID { get; set; }
+        
         public int? funcionarioID {  get; set; }
         public DateTime? data_servico { get; set; }
         public decimal? valor_servico { get; set; }
