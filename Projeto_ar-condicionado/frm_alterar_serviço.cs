@@ -45,7 +45,7 @@ namespace Projeto_ar_condicionado
 
         private void btn_salvar_servico_Click(object sender, EventArgs e)
         {
-           /* servico servico = new servico();
+            servico servico = new servico();
             ServicoCrud servicoCrud = new ServicoCrud(_conexao);
 
             if ((txb_cliente_ser.Text == "") || (txb_descricao_servico.Text == "") || (txb_valor_servico.Text == "") || (txb_funcionario_ser.Text == "") || (data_novo_ser.Text
@@ -62,7 +62,11 @@ namespace Projeto_ar_condicionado
                     //servico.data_servico = data_novo_ser.;
 
                 }
-            }*/
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERRO" + ex);
+                }
+            }
         }
     }
 }

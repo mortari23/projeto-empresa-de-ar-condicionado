@@ -22,9 +22,7 @@ namespace Projeto_ar_condicionado
         public form1()
         {
            InitializeComponent();
-           
            ConfigurarDataGrid();
-
         }
 
 
@@ -488,5 +486,6 @@ namespace Projeto_ar_condicionado
                 ListarFuncionarios();
             }
         }
+        //teste
     }
 }
