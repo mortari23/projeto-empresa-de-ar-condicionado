@@ -79,7 +79,7 @@ namespace Data
         // Método para excluir serviço
         public void ExcluirContrato(int codigoContrato)
         {
-            const string query = "DELETE FROM contrato WHERE contratoID = @codigocontratoID";
+            const string query = "DELETE FROM contrato WHERE contratoID = @codigoContrato";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -96,7 +96,7 @@ namespace Data
             }
         }
         // Método para alterar serviço
-        public void AlterarServico(contrato contrato)
+        public void AlterarContrato(contrato contrato)
         {
             const string query = "UPDATE servico SET " +
                                  "ClienteID = @Clienteid, " +
@@ -104,8 +104,8 @@ namespace Data
                                  "valor_contrato = @Valor_contrato, " +
                                  "tipo_contrato = @Tipo_contrato, " +
                                  "data_contrato = @Data_contrato, " +
-                                 "final_contrato = @Final_contrato " +
-                                 "WHERE servicoID = @contratoID";
+                                 "final_contrato = @Final_contrato, " +
+                                 "WHERE servicoID = @contratoID ";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))

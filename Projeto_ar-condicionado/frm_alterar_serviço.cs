@@ -59,8 +59,13 @@ namespace Projeto_ar_condicionado
                 {
                     servico.servicoID = int.Parse(txb_codigo.Text);
                     servico.clienteID = int.Parse(txb_cliente_ser.Text);
-                    //servico.data_servico = data_novo_ser.;
+                    servico.funcionarioID = int.Parse(txb_funcionario_ser.Text);
+                    servico.data_servico = Convert.ToDateTime(data_novo_ser.Text);
+                    servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
+                    servico.descricao_servico = txb_descricao_servico.Text;
 
+                    servicoCrud.AlterarServico(servico);
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -68,5 +73,6 @@ namespace Projeto_ar_condicionado
                 }
             }
         }
+     
     }
 }

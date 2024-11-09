@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,8 @@ namespace Projeto_ar_condicionado
 
         public frm_servico_contrato()
         {
-            InitializeComponent();
-           
+            InitializeComponent();     
             ConfigurarDataGrid();
-
-            
-
         }
 
         public void SetClienteInfo(string clienteInfo )
@@ -404,10 +401,18 @@ namespace Projeto_ar_condicionado
                 frm_Alterar_servico.ShowDialog();
                 ListarServico();
             }
+            else if (dataGridView_consultar.SelectedRows.Count > 0)
+            {
+                int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["contratoID"].Value);
+                var frm_alterar_contrato = new frm_alterar_contrato(codigo);
+                frm_alterar_contrato.ShowDialog();
+                ListarContrato();
+            }
             else
             {
                 MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         public void AtualizarDataGridView()

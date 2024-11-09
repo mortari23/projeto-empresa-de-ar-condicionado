@@ -33,7 +33,6 @@
             this.txb_cliente_ser = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_salvar_servico = new System.Windows.Forms.Button();
-            this.btn_limpar_servico = new System.Windows.Forms.Button();
             this.txb_descricao_servico = new System.Windows.Forms.TextBox();
             this.txb_valor_servico = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -88,15 +87,6 @@
             this.btn_salvar_servico.Text = "Salvar";
             this.btn_salvar_servico.UseVisualStyleBackColor = true;
             this.btn_salvar_servico.Click += new System.EventHandler(this.btn_salvar_servico_Click);
-            // 
-            // btn_limpar_servico
-            // 
-            this.btn_limpar_servico.Location = new System.Drawing.Point(426, 296);
-            this.btn_limpar_servico.Name = "btn_limpar_servico";
-            this.btn_limpar_servico.Size = new System.Drawing.Size(97, 23);
-            this.btn_limpar_servico.TabIndex = 25;
-            this.btn_limpar_servico.Text = "Limpar";
-            this.btn_limpar_servico.UseVisualStyleBackColor = true;
             // 
             // txb_descricao_servico
             // 
@@ -176,7 +166,6 @@
             this.Controls.Add(this.txb_cliente_ser);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_salvar_servico);
-            this.Controls.Add(this.btn_limpar_servico);
             this.Controls.Add(this.txb_descricao_servico);
             this.Controls.Add(this.txb_valor_servico);
             this.Controls.Add(this.label5);
@@ -195,7 +184,6 @@
         private System.Windows.Forms.TextBox txb_cliente_ser;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_salvar_servico;
-        private System.Windows.Forms.Button btn_limpar_servico;
         private System.Windows.Forms.TextBox txb_descricao_servico;
         private System.Windows.Forms.TextBox txb_valor_servico;
         private System.Windows.Forms.Label label5;

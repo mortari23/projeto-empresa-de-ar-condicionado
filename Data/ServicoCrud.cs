@@ -48,18 +48,18 @@ namespace Data
         {
             //const string query = "SELECT * FROM servico WHERE servicoID LIKE @Pesquisa";
             const string query = @"SELECT 
-    s.servicoID,
-    c.nome_cliente AS nome_cliente,
-    f.nome_funcionario AS nome_funcionario,
-    s.data_servico,
-    s.valor_servico,
-    s.descricao_serviço
-FROM 
-    servico s
-INNER JOIN 
-    clientes c ON s.clienteID = c.clienteID
-INNER JOIN 
-    funcionario f ON s.funcionarioID = f.funcionarioID";
+                       s.servicoID,
+                       c.nome_cliente AS nome_cliente,
+                       f.nome_funcionario AS nome_funcionario,
+                       s.data_servico,
+                       s.valor_servico,
+                       s.descricao_serviço
+                       FROM 
+                       servico s
+                       INNER JOIN 
+                       clientes c ON s.clienteID = c.clienteID
+                       INNER JOIN 
+                       funcionario f ON s.funcionarioID = f.funcionarioID";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -108,8 +108,8 @@ INNER JOIN
                                  "FuncionarioID = @Funcionarioid, " +
                                  "data_servico = @Data_servico, " +
                                  "valor_servico = @Valor_servico, " +
-                                 "descricao_servico = @Descricao_servico, " +
-                                 "WHERE servicoID = @servicoID"; 
+                                 "descricao_serviço = @Descricao_servico " +
+                                 "WHERE servicoID = @servicoID "; 
                                 
 
             try
