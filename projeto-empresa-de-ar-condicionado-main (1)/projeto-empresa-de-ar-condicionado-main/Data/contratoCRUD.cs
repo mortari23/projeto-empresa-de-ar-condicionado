@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -98,6 +98,15 @@ namespace Data
         // Método para alterar serviço
         public void AlterarContrato(contrato contrato)
         {
+            const string query = "UPDATE servico SET " +
+                                 "ClienteID = @Clienteid, " +
+                                 "descricao_contrato = @Descricao_contrato, " +
+                                 "valor_contrato = @Valor_contrato, " +
+                                 "tipo_contrato = @Tipo_contrato, " +
+                                 "data_contrato = @Data_contrato, " +
+                                 "final_contrato = @Final_contrato, " +
+                                 "WHERE servicoID = @contratoID ";
+            try
             {
                 const string query = "UPDATE contrato SET " +
                                      "clienteID = @Clienteid, " +

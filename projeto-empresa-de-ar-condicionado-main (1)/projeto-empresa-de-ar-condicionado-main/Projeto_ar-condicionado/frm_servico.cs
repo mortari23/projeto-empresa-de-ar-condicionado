@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -410,7 +410,7 @@ namespace Projeto_ar_condicionado
                 frm_Alterar_servico.ShowDialog();
                 ListarServico();
             }
-            else if (comboBox_buscar_tipo.Text == "Contrato")
+            else if (dataGridView_consultar.SelectedRows.Count > 0)
             {
                 int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["contratoID"].Value);
                 var frm_alterar_contrato = new frm_alterar_contrato(codigo);
