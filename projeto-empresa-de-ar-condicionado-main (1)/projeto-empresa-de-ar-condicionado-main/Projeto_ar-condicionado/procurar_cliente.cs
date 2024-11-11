@@ -101,6 +101,7 @@ namespace Projeto_ar_condicionado
 
                
                 frm_servico_contrato frmServicoContratoAberto = Application.OpenForms.OfType<frm_servico_contrato>().FirstOrDefault();
+                frm_alterar_serviço frm_Alterar_Serviço = Application.OpenForms.OfType<frm_alterar_serviço>().FirstOrDefault();
 
                 if (frmServicoContratoAberto != null)
                 {
@@ -110,6 +111,13 @@ namespace Projeto_ar_condicionado
                     frmServicoContratoAberto.SetClienteInfoID(idcliente);
 
 
+                }
+
+                if(frm_Alterar_Serviço != null)
+                {
+                    frm_Alterar_Serviço.BringToFront();
+                    frm_Alterar_Serviço.SetClienteInfo(nomeCliente);
+                    frm_Alterar_Serviço.SetClienteInfoID(idcliente);
                 }
 
 

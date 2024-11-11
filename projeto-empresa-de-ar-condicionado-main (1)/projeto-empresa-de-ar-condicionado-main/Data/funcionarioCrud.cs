@@ -77,20 +77,37 @@ namespace Data
         }
         public void ExcluirFuncionario(int codigofuncionario)
         {
-            const string query = "DELETE FROM funcionario WHERE funcionarioID =@codigoFuncionario";
+            const string deleteServicosQuery = "DELETE FROM servico WHERE funcionarioID = @codigoFuncionario";
+         
+            const string deleteFuncionarioQuery = "DELETE FROM funcionario WHERE funcionarioID = @codigoFuncionario";
+
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
-                using (var comando = new SqlCommand(query, conexaoBd))
                 {
-                    comando.Parameters.AddWithValue("@codigoFuncionario", codigofuncionario);
                     conexaoBd.Open();
-                    comando.ExecuteNonQuery();
+
+                    using (var transacao = conexaoBd.BeginTransaction())
+                    using (var comando = new SqlCommand())
+                    {
+                        comando.Connection = conexaoBd;
+                        comando.Transaction = transacao;
+
+                       
+                        comando.CommandText = deleteServicosQuery;
+                        comando.Parameters.AddWithValue("@codigoFuncionario", codigofuncionario);
+                        comando.ExecuteNonQuery();
+
+                        comando.CommandText = deleteFuncionarioQuery;
+                        comando.ExecuteNonQuery();
+
+                        transacao.Commit();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"ERRO ao deletar:{ex.Message}", ex);
+                throw new Exception($"Erro ao excluir funcionario: {ex.Message}", ex);
             }
         }
         public void AlterarFuncionario(funcionario funcionario)

@@ -96,6 +96,7 @@ namespace Projeto_ar_condicionado
                 string idfuncionario = dataGridView_funcionario.CurrentRow.Cells["funcionarioID"].Value.ToString();
 
                 frm_servico_contrato frmServicoContratoAberto = Application.OpenForms.OfType<frm_servico_contrato>().FirstOrDefault();
+                frm_alterar_serviço frm_alterar_serviço = Application.OpenForms.OfType<frm_alterar_serviço>().FirstOrDefault();
 
                 if (frmServicoContratoAberto != null)
                 {
@@ -104,8 +105,16 @@ namespace Projeto_ar_condicionado
                     frmServicoContratoAberto.SetFuncionarioInfo(nomeFuncionario);
                     frmServicoContratoAberto.SetFuncionarioInfoID(idfuncionario);
                 }
-               
-                
+
+                if (frm_alterar_serviço != null)
+                {
+
+                    frm_alterar_serviço.BringToFront();
+                    frm_alterar_serviço.SetFuncionarioInfo(nomeFuncionario);
+                    frm_alterar_serviço.SetFuncionarioInfoID(idfuncionario);
+                }
+
+
             }
 
             this.Close();

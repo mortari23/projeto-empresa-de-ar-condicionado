@@ -326,6 +326,7 @@
             this.txb_cliente_con.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txb_cliente_con.Location = new System.Drawing.Point(140, 33);
             this.txb_cliente_con.Name = "txb_cliente_con";
+            this.txb_cliente_con.ReadOnly = true;
             this.txb_cliente_con.Size = new System.Drawing.Size(232, 26);
             this.txb_cliente_con.TabIndex = 25;
             this.txb_cliente_con.TextChanged += new System.EventHandler(this.txb_cliente_con_TextChanged);

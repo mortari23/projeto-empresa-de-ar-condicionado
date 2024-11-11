@@ -79,23 +79,50 @@ namespace Data
 
 
 
-        public void ExcluirCliente (int codigocliente)
-        {
-            const string query = "DELETE FROM clientes WHERE clienteID =@codigoCliente";
-            try
-            {
-                using (var conexaoBd = new SqlConnection(_conexao))
-                using (var comando = new SqlCommand (query, conexaoBd))
+       
+        
+       public void ExcluirCliente(int codigoCliente)
+       {
+                const string deleteServicosQuery = "DELETE FROM servico WHERE clienteID = @codigoCliente";
+                const string deleteContratosQuery = "DELETE FROM contrato WHERE clienteID = @codigoCliente";
+                const string deleteClienteQuery = "DELETE FROM clientes WHERE clienteID = @codigoCliente";
+
+                try
                 {
-                    comando.Parameters.AddWithValue("@codigoCliente", codigocliente);
-                    conexaoBd.Open();
-                    comando.ExecuteNonQuery();
+                    using (var conexaoBd = new SqlConnection(_conexao))
+                    {
+                        conexaoBd.Open();
+
+                        using (var transacao = conexaoBd.BeginTransaction())
+                        using (var comando = new SqlCommand())
+                        {
+                            comando.Connection = conexaoBd;
+                            comando.Transaction = transacao;
+
+                          
+                            comando.CommandText = deleteServicosQuery;
+                            comando.Parameters.AddWithValue("@codigoCliente", codigoCliente);
+                            comando.ExecuteNonQuery();
+
+                           
+                            comando.CommandText = deleteContratosQuery;
+                            comando.ExecuteNonQuery();
+
+                      
+                            comando.CommandText = deleteClienteQuery;
+                            comando.ExecuteNonQuery();
+
+                            transacao.Commit();
+                        }
+                    }
                 }
-            }catch(Exception ex)
-            {
-                throw new  Exception ($"ERRO ao deletar:{ex.Message}",ex);
-            }
-        }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Erro ao excluir cliente: {ex.Message}", ex);
+                }
+       }
+
+        
         public void AlterarCliente (Cliente cliente)
         { 
             const string query = @"update clientes set nome_cliente = @Nome_cliente,telefone_cliente = @Telefone_cliente, cpf_cliente = @CPF_cliente, endereco_cliente = @Endereco_cliente, gmail_cliente = @Gmail_cliente, cidade_cliente = @Cidade_cliente, CEP_cliente = @CEP_cliente, bairro_cliente = @Bairro_cliente, Numero_casa = @Numero_casa, complemento_cliente = @Complemento_cliente where clienteID = @codigoCliente";

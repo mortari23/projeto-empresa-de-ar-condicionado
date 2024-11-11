@@ -33,8 +33,8 @@ namespace Projeto_ar_condicionado
                 }
 
                 // Preenchendo os campos do formulário com os valores do objeto `servico`
-                txb_cliente_ser.Text = servico.clienteID?.ToString() ?? string.Empty;
-                txb_funcionario_ser.Text = servico.funcionarioID?.ToString() ?? string.Empty;
+                txb_idcliente.Text = servico.clienteID?.ToString() ?? string.Empty;
+                txb_idfuncionario.Text = servico.funcionarioID?.ToString() ?? string.Empty;
                 data_novo_ser.Text = servico.data_servico?.ToString("dd/MM/yyyy") ?? string.Empty;
                 txb_valor_servico.Text = servico.valor_servico?.ToString() ?? string.Empty;
                 txb_descricao_servico.Text = servico.descricao_servico ?? string.Empty;
@@ -45,7 +45,7 @@ namespace Projeto_ar_condicionado
 
         private void btn_salvar_servico_Click(object sender, EventArgs e)
         {
-           /* servico servico = new servico();
+            servico servico = new servico();
             ServicoCrud servicoCrud = new ServicoCrud(_conexao);
 
             if ((txb_cliente_ser.Text == "") || (txb_descricao_servico.Text == "") || (txb_valor_servico.Text == "") || (txb_funcionario_ser.Text == "") || (data_novo_ser.Text
@@ -58,11 +58,54 @@ namespace Projeto_ar_condicionado
                 try
                 {
                     servico.servicoID = int.Parse(txb_codigo.Text);
-                    servico.clienteID = int.Parse(txb_cliente_ser.Text);
-                    //servico.data_servico = data_novo_ser.;
+                    servico.clienteID = int.Parse(txb_idcliente.Text);
+                    servico.funcionarioID = int.Parse(txb_idfuncionario.Text);
+                    servico.data_servico = Convert.ToDateTime(data_novo_ser.Text);
+                    servico.valor_servico = Convert.ToDecimal(txb_valor_servico.Text);
+                    servico.descricao_servico = txb_descricao_servico.Text;
 
+                    servicoCrud.AlterarServico(servico);
+                    this.Close();
                 }
-            }*/
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERRO" + ex);
+                }
+            }
+        }
+
+        public void SetClienteInfo(string clienteInfo)
+        {
+           
+            txb_cliente_ser.Text = clienteInfo; 
+        }
+        public void SetClienteInfoID(string idcliente)
+        {
+            txb_idcliente.Text = idcliente;
+        }
+
+        public void SetFuncionarioInfo(string funcionarioInfo)
+        {
+            txb_funcionario_ser.Text = funcionarioInfo; 
+        }
+
+        public void SetFuncionarioInfoID(string idfuncionario)
+        {
+            txb_idfuncionario.Text = idfuncionario;
+        }
+
+
+
+        private void btn_pesquisa_ser_Click(object sender, EventArgs e)
+        {
+            var procurar_cliente = new procurar_cliente();
+            procurar_cliente.ShowDialog();
+        }
+
+        private void btn__Click(object sender, EventArgs e)
+        {
+            var frm_procurar_funcionario = new frm_procurar_funcionario();
+            frm_procurar_funcionario.ShowDialog();
         }
     }
 }

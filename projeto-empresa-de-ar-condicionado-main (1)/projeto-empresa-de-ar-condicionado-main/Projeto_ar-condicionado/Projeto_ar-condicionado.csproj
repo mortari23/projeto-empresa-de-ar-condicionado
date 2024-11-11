@@ -61,6 +61,12 @@
     <Compile Include="frm_alterar_cadastro.Designer.cs">
       <DependentUpon>frm_alterar_cadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_alterar_contrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_alterar_contrato.Designer.cs">
+      <DependentUpon>frm_alterar_contrato.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_alterar_funcionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_alterar_cadastro.resx">
       <DependentUpon>frm_alterar_cadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_alterar_contrato.resx">
+      <DependentUpon>frm_alterar_contrato.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_alterar_funcionario.resx">
       <DependentUpon>frm_alterar_funcionario.cs</DependentUpon>

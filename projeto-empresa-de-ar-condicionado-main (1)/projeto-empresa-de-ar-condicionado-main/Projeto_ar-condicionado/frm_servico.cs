@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,8 @@ namespace Projeto_ar_condicionado
 
         public frm_servico_contrato()
         {
-            InitializeComponent();
-           
+            InitializeComponent();     
             ConfigurarDataGrid();
-
-            
-
         }
 
         public void SetClienteInfo(string clienteInfo )
@@ -223,6 +220,8 @@ namespace Projeto_ar_condicionado
             txb_descricao_servico.Clear();
             txb_valor_servico.Clear();
             maskedTextBox_Data_servico.Clear();
+            txb_cliente_ser.Clear();
+            txb_funcionario_ser.Clear();
             
         }
 
@@ -230,7 +229,10 @@ namespace Projeto_ar_condicionado
         {
             txb_descricao_contrato.Clear();
             txb_valor_contrato.Clear();
-            maskedTextBox_data_contrato.Clear();            
+            maskedTextBox_data_contrato.Clear();
+            txb_cliente_con.Clear();
+            comboBox_tipo_contrato.Text = "";
+            maskedTextBox_final.Clear();
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
@@ -354,10 +356,12 @@ namespace Projeto_ar_condicionado
             if (comboBox_buscar_tipo.Text == "Serviço")
             {
                 ListarServico();
+               
             }
             else if (comboBox_buscar_tipo.Text == "Contrato")
             {
                 ListarContrato();
+  
             }
         }
 
@@ -370,6 +374,8 @@ namespace Projeto_ar_condicionado
         {
             maskedTextBox_data_contrato.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedTextBox_Data_servico.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+           
 
            
         }
@@ -397,17 +403,25 @@ namespace Projeto_ar_condicionado
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-            if (dataGridView_consultar.SelectedRows.Count > 0)
+            if (comboBox_buscar_tipo.Text=="Serviço")
             {
                 int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["servicoID"].Value);
                 var frm_Alterar_servico = new frm_alterar_serviço(codigo);
                 frm_Alterar_servico.ShowDialog();
                 ListarServico();
             }
+            else if (comboBox_buscar_tipo.Text == "Contrato")
+            {
+                int codigo = Convert.ToInt32(dataGridView_consultar.CurrentRow.Cells["contratoID"].Value);
+                var frm_alterar_contrato = new frm_alterar_contrato(codigo);
+                frm_alterar_contrato.ShowDialog();
+                ListarContrato();
+            }
             else
             {
                 MessageBox.Show("Selecione um Registro para ser alterado", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         public void AtualizarDataGridView()

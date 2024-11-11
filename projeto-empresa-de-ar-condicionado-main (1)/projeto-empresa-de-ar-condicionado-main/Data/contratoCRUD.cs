@@ -79,7 +79,7 @@ namespace Data
         // Método para excluir serviço
         public void ExcluirContrato(int codigoContrato)
         {
-            const string query = "DELETE FROM contrato WHERE contratoID = @codigocontratoID";
+            const string query = "DELETE FROM contrato WHERE contratoID = @codigoContrato";
             try
             {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -96,36 +96,39 @@ namespace Data
             }
         }
         // Método para alterar serviço
-        public void AlterarServico(contrato contrato)
+        public void AlterarContrato(contrato contrato)
         {
-            const string query = "UPDATE servico SET " +
-                                 "ClienteID = @Clienteid, " +
-                                 "descricao_contrato = @Descricao_contrato, " +
-                                 "valor_contrato = @Valor_contrato, " +
-                                 "tipo_contrato = @Tipo_contrato, " +
-                                 "data_contrato = @Data_contrato, " +
-                                 "final_contrato = @Final_contrato " +
-                                 "WHERE servicoID = @contratoID";
-            try
             {
-                using (var conexaoBd = new SqlConnection(_conexao))
-                using (var comandoSql = new SqlCommand(query, conexaoBd))
-                {
-                    comandoSql.Parameters.AddWithValue("@Clienteid", contrato.clienteID);
-                    comandoSql.Parameters.AddWithValue("@Descricao_contrato", contrato.descricao_contrato);
-                    comandoSql.Parameters.AddWithValue("@Valor_contrato", contrato.valor_contrato);
-                    comandoSql.Parameters.AddWithValue("@Tipo_contrato", contrato.tipo_contrato);
-                    comandoSql.Parameters.AddWithValue("@Data_contrato", contrato.data_contrato);
-                    comandoSql.Parameters.AddWithValue("@Final_contrato", contrato.final_contrato);
-                    comandoSql.Parameters.AddWithValue("@contratoID", contrato.contratoID);
+                const string query = "UPDATE contrato SET " +
+                                     "clienteID = @Clienteid, " +
+                                     "descricao_contrato = @Descricao_contrato, " +
+                                     "valor_contrato = @Valor_contrato, " +
+                                     "tipo_contrato = @Tipo_contrato, " +
+                                     "data_contrato = @Data_contrato, " +
+                                     "final_contrato = @Final_contrato " +
+                                     "WHERE contratoID = @contratoID";
 
-                    conexaoBd.Open();
-                    comandoSql.ExecuteNonQuery();
+                try
+                {
+                    using (var conexaoBd = new SqlConnection(_conexao))
+                    using (var comandoSql = new SqlCommand(query, conexaoBd))
+                    {
+                        comandoSql.Parameters.AddWithValue("@Clienteid", contrato.clienteID.HasValue ? contrato.clienteID.Value : (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@Descricao_contrato", contrato.descricao_contrato ?? (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@Valor_contrato", contrato.valor_contrato.HasValue ? contrato.valor_contrato.Value : (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@Tipo_contrato", contrato.tipo_contrato ?? (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@Data_contrato", contrato.data_contrato.HasValue ? contrato.data_contrato.Value : (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@Final_contrato", contrato.final_contrato.HasValue ? contrato.final_contrato.Value : (object)DBNull.Value);
+                        comandoSql.Parameters.AddWithValue("@contratoID", contrato.contratoID);
+
+                        conexaoBd.Open();
+                        comandoSql.ExecuteNonQuery();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Erro ao alterar o contrato: {ex.Message}", ex);
+                catch (Exception ex)
+                {
+                    throw new Exception($"Erro ao alterar o contrato: {ex.Message}", ex);
+                }
             }
         }
         // Método para obter um serviço
@@ -147,7 +150,7 @@ namespace Data
                         {
                             contrato = new contrato
                             {
-                                contratoID = reader["servicoID"] != DBNull.Value ? Convert.ToInt32(reader["servicoID"].ToString().Trim()) : 0,
+                                contratoID = reader["contratoID"] != DBNull.Value ? Convert.ToInt32(reader["contratoID"].ToString().Trim()) : 0,
                                 clienteID = reader["clienteID"] != DBNull.Value ? Convert.ToInt32(reader["clienteID"].ToString().Trim()) : (int?)null,
                                 data_contrato = reader["data_contrato"] != DBNull.Value ? DateTime.Parse(reader["data_contrato"].ToString().Trim()) : (DateTime?)null,                               
                                 valor_contrato = reader["valor_contrato"] != DBNull.Value ? decimal.Parse(reader["valor_contrato"].ToString().Trim()) : (decimal?)null,                              

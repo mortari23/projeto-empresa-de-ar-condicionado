@@ -93,6 +93,8 @@ INNER JOIN
     clientes c ON ct.clienteID = c.clienteID;
 
 select * from contrato
-
+select * from servico
+select * from clientes
+select * from funcionario
 
 
