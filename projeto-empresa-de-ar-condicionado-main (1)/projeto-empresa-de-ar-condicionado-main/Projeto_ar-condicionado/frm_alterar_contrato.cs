@@ -109,7 +109,7 @@ namespace Projeto_ar_condicionado
                 contratoCRUD contratoCRUD = new contratoCRUD(_conexao);
 
                 // Verificar se os campos essenciais estão preenchidos
-                if ((data_novo_con.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == ""))
+                if ((data_novo_con.Text == "") || (txb_descricao_contrato.Text == "") || (txb_valor_contrato.Text == "") || (comboBox_tipo_contrato.Text == "") || (txb_cliente_con.Text=="") || (dateTimePicker1.Text==""))
                 {
                     MessageBox.Show("Algum campo essencial não preenchido", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

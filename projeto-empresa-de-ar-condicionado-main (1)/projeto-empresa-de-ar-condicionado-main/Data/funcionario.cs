@@ -17,7 +17,6 @@ namespace Data
         public string bairro_funcionario { get; set; }
         public string numero_funcionario { get; set;}
         public string complemento_funcionario { get; set; }
-      
-
+        public string cidade_funcionario { get; set;}
     }
 }

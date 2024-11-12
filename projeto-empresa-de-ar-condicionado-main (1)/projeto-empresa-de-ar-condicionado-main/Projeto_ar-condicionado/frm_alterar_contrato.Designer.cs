@@ -231,6 +231,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frm_alterar_contrato";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_alterar_contrato";
             this.ResumeLayout(false);
             this.PerformLayout();

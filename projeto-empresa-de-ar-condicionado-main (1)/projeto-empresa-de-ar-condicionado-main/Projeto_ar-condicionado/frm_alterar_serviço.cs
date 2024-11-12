@@ -24,7 +24,7 @@ namespace Projeto_ar_condicionado
                 ServicoCrud servicoCrud = new ServicoCrud(_conexao);
                 var servico = servicoCrud.ObtemServico(codigo);
 
-                // Verificação se o serviço foi encontrado
+               
                 if (servico == null)
                 {
                     MessageBox.Show("Serviço não encontrado!");
@@ -32,14 +32,15 @@ namespace Projeto_ar_condicionado
                     return;
                 }
 
-                // Preenchendo os campos do formulário com os valores do objeto `servico`
+               
                 txb_idcliente.Text = servico.clienteID?.ToString() ?? string.Empty;
                 txb_idfuncionario.Text = servico.funcionarioID?.ToString() ?? string.Empty;
                 data_novo_ser.Text = servico.data_servico?.ToString("dd/MM/yyyy") ?? string.Empty;
                 txb_valor_servico.Text = servico.valor_servico?.ToString() ?? string.Empty;
                 txb_descricao_servico.Text = servico.descricao_servico ?? string.Empty;
                 txb_codigo.Text = servico.servicoID?.ToString() ?? string.Empty;
-                // Atribua outros campos, se necessário.
+                
+                
             }
         }
 
@@ -49,7 +50,7 @@ namespace Projeto_ar_condicionado
             ServicoCrud servicoCrud = new ServicoCrud(_conexao);
 
             if ((txb_cliente_ser.Text == "") || (txb_descricao_servico.Text == "") || (txb_valor_servico.Text == "") || (txb_funcionario_ser.Text == "") || (data_novo_ser.Text
-                == ""))
+                == "")||(txb_cliente_ser.Text==""))
             {
                 MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

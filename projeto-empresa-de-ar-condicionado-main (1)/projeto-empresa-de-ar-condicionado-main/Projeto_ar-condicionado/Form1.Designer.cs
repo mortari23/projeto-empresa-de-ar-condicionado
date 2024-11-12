@@ -390,6 +390,7 @@
             this.tabPage_consulta.TabIndex = 1;
             this.tabPage_consulta.Text = "Consultar cadastros";
             this.tabPage_consulta.UseVisualStyleBackColor = true;
+            this.tabPage_consulta.Click += new System.EventHandler(this.tabPage_consulta_Click);
             // 
             // label12
             // 

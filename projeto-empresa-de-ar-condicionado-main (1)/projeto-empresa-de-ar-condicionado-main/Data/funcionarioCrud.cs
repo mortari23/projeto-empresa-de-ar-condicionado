@@ -20,8 +20,8 @@ namespace Data
 
         public void IncluirFuncionario(funcionario funcionario) 
         {
-            const string query = @"INSERT INTO funcionario (nome_funcionario,telefone_funcionario,cpf_funcionario,endereco_funcionario,CEP_funcionario,bairro_funcionario,numero_funcionario,complemento_funcionario)
-                                 Values(@Nome_funcionario,@Telefone_funcionario,@CPF_funcionario,@Endereco_funcionario,@CEP_funcionario,@Bairro_funcionario,@numero_funcionario,@Complemento_funcionario)";
+            const string query = @"INSERT INTO funcionario (nome_funcionario,telefone_funcionario,cpf_funcionario,endereco_funcionario,CEP_funcionario,bairro_funcionario,numero_funcionario,complemento_funcionario,cidade_funcionario)
+                                 Values(@Nome_funcionario,@Telefone_funcionario,@CPF_funcionario,@Endereco_funcionario,@CEP_funcionario,@Bairro_funcionario,@numero_funcionario,@Complemento_funcionario,@Cidade_funcionario)";
 
             try
             {
@@ -36,7 +36,8 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Bairro_funcionario", funcionario.bairro_funcionario);
                     comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
                     comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
-                   // comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
+                    comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
+                   
 
                     conexaoBd.Open();
                     comandoSql.ExecuteNonQuery();
@@ -112,7 +113,7 @@ namespace Data
         }
         public void AlterarFuncionario(funcionario funcionario)
         {
-            const string query = @"update funcionario set nome_funcionario = @Nome_funcionario, telefone_funcionario = @Telefone_funcionario, cpf_funcionario = @CPF_funcionario, endereco_funcionario = @Endereco_funcionario, cidade_funcionario = @Cidade_funcionario, CEP_funcionario = @CEP_funcionario, bairro_funcionario = @Bairro_funcionario, numero_funcionario = @Numero_funcionario where funcionarioID = @codigofuncionario";
+            const string query = @"update funcionario set nome_funcionario = @Nome_funcionario, telefone_funcionario = @Telefone_funcionario, cpf_funcionario = @CPF_funcionario, endereco_funcionario = @Endereco_funcionario, cidade_funcionario = @Cidade_funcionario, CEP_funcionario = @CEP_funcionario, bairro_funcionario = @Bairro_funcionario,numero_funcionario = @Numero_funcionario where funcionarioID = @codigofuncionario";
              try
              {
                 using (var conexaoBd = new SqlConnection(_conexao))
@@ -126,7 +127,7 @@ namespace Data
                     comandoSql.Parameters.AddWithValue("@Bairro_funcionario", funcionario.bairro_funcionario);
                     comandoSql.Parameters.AddWithValue("@Numero_funcionario", funcionario.numero_funcionario);
                     comandoSql.Parameters.AddWithValue("@Complemento_funcionario", funcionario.complemento_funcionario);
-
+                    comandoSql.Parameters.AddWithValue("@Cidade_funcionario", funcionario.cidade_funcionario);
                     comandoSql.Parameters.AddWithValue("@codigofuncionario", funcionario.funcionarioID);
 
                     conexaoBd.Open();
@@ -165,6 +166,7 @@ namespace Data
                                 bairro_funcionario = reader["bairro_funcionario"].ToString(),
                                 numero_funcionario = reader["numero_funcionario"].ToString(),
                                 complemento_funcionario = reader["complemento_funcionario"].ToString(),
+                                cidade_funcionario = reader["cidade_funcionario"].ToString(),
                             };
                         }
                     }

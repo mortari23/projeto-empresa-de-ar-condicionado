@@ -42,6 +42,7 @@ namespace Projeto_ar_condicionado
                 txb_complemento.Text=cliente.complemento_cliente.ToString();
                 txb_cidade.Text=cliente.cidade_cliente.ToString();
                 maskedTextBox_numero.Text=cliente.numero_casa.ToString();
+                comboBox_tipo.Text = "Cliente";
 
 
 
@@ -119,6 +120,123 @@ namespace Projeto_ar_condicionado
                    
 
                 }
+            }
+        }
+
+        private void comboBox_tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_tipo.Text == "Funcionario")
+            {
+                txb_gmail.ReadOnly = true;
+                txb_gmail.BackColor = Color.LightGray;
+                txb_gmail.Clear();
+            }
+            else
+            {
+
+
+                txb_gmail.ReadOnly = false;
+                txb_gmail.BackColor = Color.White;
+
+
+            }
+        }
+        //======================================================================================//
+        private void txb_nome_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                maskedTextBox_telefone.Focus();
+            }
+        }
+
+        private void maskedTextBox_telefone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                maskedTextBox_cpf.Focus();
+            }
+        }
+
+        private void maskedTextBox_cpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txb_gmail.Focus();
+            }
+        }
+
+
+
+        private void txb_gmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txb_rua.Focus();
+            }
+        }
+
+        private void maskedTextBox_cep_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_buscar_Click(sender,e);
+            }
+        }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cep = maskedTextBox_cep.Text;
+                string xml = "https://viacep.com.br/ws/" + cep + "/xml/";
+                // Criar um dataset para enviar e receber os dados
+                DataSet dados = new DataSet();
+
+                // ler o xml
+                dados.ReadXml(xml);
+
+                txb_rua.Text = dados.Tables[0].Rows[0]["logradouro"].ToString();
+                txb_bairro.Text = dados.Tables[0].Rows[0]["bairro"].ToString();
+                txb_cidade.Text = dados.Tables[0].Rows[0]["localidade"].ToString();
+
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void txb_rua_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                maskedTextBox_numero.Focus();
+            }
+        }
+
+        private void maskedTextBox_numero_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txb_bairro.Focus();
+            }
+        }
+
+        private void txb_bairro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txb_cidade.Focus();
+            }
+        }
+
+        private void txb_cidade_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_salvar_Click(sender,e);
             }
         }
     }

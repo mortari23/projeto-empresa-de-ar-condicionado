@@ -70,6 +70,7 @@
             this.Controls.Add(this.btn_buscar_cadastro);
             this.Controls.Add(this.dataGridView_cliente);
             this.Name = "procurar_contrato";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "procurar_contrato";
             this.Load += new System.EventHandler(this.procurar_contrato_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cliente)).EndInit();

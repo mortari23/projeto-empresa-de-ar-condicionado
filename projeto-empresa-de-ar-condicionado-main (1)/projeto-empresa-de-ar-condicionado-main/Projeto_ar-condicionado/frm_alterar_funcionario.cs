@@ -43,6 +43,8 @@ namespace Projeto_ar_condicionado
                 txb_bairro.Text = funcionario.bairro_funcionario.ToString();
                 txb_complemento.Text = funcionario.complemento_funcionario.ToString();
                 maskedTextBox_numero.Text = funcionario.numero_funcionario.ToString();
+                txb_cidade.Text = funcionario.cidade_funcionario.ToString();
+                comboBox_tipo.Text = "Funcionario";
             }
 
         }
@@ -83,6 +85,7 @@ namespace Projeto_ar_condicionado
                         funcionario.bairro_funcionario = txb_bairro.Text;
                         funcionario.complemento_funcionario = txb_complemento.Text;
                         funcionario.numero_funcionario = maskedTextBox_numero.Text;
+                        funcionario.cidade_funcionario = txb_cidade.Text;
 
                         funcionarioCrud.AlterarFuncionario(funcionario);
                         this.Close();
@@ -140,6 +143,7 @@ namespace Projeto_ar_condicionado
             {
                 txb_gmail.ReadOnly = true;
                 txb_gmail.BackColor = Color.LightGray;
+                txb_gmail.Clear();
             }
             else
             {

@@ -97,4 +97,6 @@ select * from servico
 select * from clientes
 select * from funcionario
 
+alter table funcionario add cidade_funcionario nvarchar(150);
+
 

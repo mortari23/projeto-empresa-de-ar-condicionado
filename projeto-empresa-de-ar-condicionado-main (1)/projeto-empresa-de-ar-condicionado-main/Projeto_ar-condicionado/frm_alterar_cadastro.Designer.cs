@@ -89,6 +89,7 @@
             this.maskedTextBox_cep.Name = "maskedTextBox_cep";
             this.maskedTextBox_cep.Size = new System.Drawing.Size(85, 26);
             this.maskedTextBox_cep.TabIndex = 21;
+            this.maskedTextBox_cep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBox_cep_KeyDown);
             // 
             // maskedTextBox_numero
             // 
@@ -98,6 +99,7 @@
             this.maskedTextBox_numero.Name = "maskedTextBox_numero";
             this.maskedTextBox_numero.Size = new System.Drawing.Size(42, 26);
             this.maskedTextBox_numero.TabIndex = 20;
+            this.maskedTextBox_numero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBox_numero_KeyDown);
             // 
             // btn_buscar
             // 
@@ -107,6 +109,7 @@
             this.btn_buscar.TabIndex = 19;
             this.btn_buscar.Text = "Buscar";
             this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
             // 
             // label11
             // 
@@ -125,6 +128,7 @@
             this.txb_cidade.Name = "txb_cidade";
             this.txb_cidade.Size = new System.Drawing.Size(235, 26);
             this.txb_cidade.TabIndex = 18;
+            this.txb_cidade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_cidade_KeyDown);
             // 
             // label10
             // 
@@ -143,6 +147,7 @@
             this.txb_bairro.Name = "txb_bairro";
             this.txb_bairro.Size = new System.Drawing.Size(285, 26);
             this.txb_bairro.TabIndex = 16;
+            this.txb_bairro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_bairro_KeyDown);
             // 
             // label9
             // 
@@ -189,6 +194,7 @@
             this.txb_rua.Name = "txb_rua";
             this.txb_rua.Size = new System.Drawing.Size(237, 26);
             this.txb_rua.TabIndex = 12;
+            this.txb_rua.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_rua_KeyDown);
             // 
             // label6
             // 
@@ -207,6 +213,7 @@
             this.txb_gmail.Name = "txb_gmail";
             this.txb_gmail.Size = new System.Drawing.Size(286, 26);
             this.txb_gmail.TabIndex = 20;
+            this.txb_gmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_gmail_KeyDown);
             // 
             // label5
             // 
@@ -226,6 +233,7 @@
             this.maskedTextBox_cpf.Name = "maskedTextBox_cpf";
             this.maskedTextBox_cpf.Size = new System.Drawing.Size(127, 26);
             this.maskedTextBox_cpf.TabIndex = 18;
+            this.maskedTextBox_cpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBox_cpf_KeyDown);
             // 
             // label4
             // 
@@ -245,6 +253,7 @@
             this.maskedTextBox_telefone.Name = "maskedTextBox_telefone";
             this.maskedTextBox_telefone.Size = new System.Drawing.Size(121, 26);
             this.maskedTextBox_telefone.TabIndex = 16;
+            this.maskedTextBox_telefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBox_telefone_KeyDown);
             // 
             // label3
             // 
@@ -267,6 +276,7 @@
             this.comboBox_tipo.Name = "comboBox_tipo";
             this.comboBox_tipo.Size = new System.Drawing.Size(121, 28);
             this.comboBox_tipo.TabIndex = 14;
+            this.comboBox_tipo.SelectedIndexChanged += new System.EventHandler(this.comboBox_tipo_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -285,6 +295,7 @@
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(442, 26);
             this.txb_nome.TabIndex = 12;
+            this.txb_nome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_nome_KeyDown);
             // 
             // label1
             // 

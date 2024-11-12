@@ -196,7 +196,7 @@ namespace Projeto_ar_condicionado
            {
                 if ((txb_nome.Text == "") || (comboBox_tipo.Text == "") || (maskedTextBox_numero.Text == "")
                || (maskedTextBox_telefone.Text == "") || (maskedTextBox_cpf.Text == "") 
-               || (txb_rua.Text == "") || (txb_bairro.Text == ""))
+               || (txb_rua.Text == "") || (txb_bairro.Text == "") || (txb_cidade.Text==""))
                 {
                     MessageBox.Show("algum campo necessario esta vazio", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -210,6 +210,7 @@ namespace Projeto_ar_condicionado
                     funcionario.numero_funcionario = maskedTextBox_numero.Text;
                     funcionario.complemento_funcionario = txb_complemento.Text;
                     funcionario.telefone_funcionario = maskedTextBox_telefone.Text;
+                    funcionario.cidade_funcionario = txb_cidade.Text;
 
                     funcionariocrud.IncluirFuncionario(funcionario);
 
@@ -227,7 +228,7 @@ namespace Projeto_ar_condicionado
                     maskedTextBox_telefone.Clear();
                     maskedTextBox_cpf.Clear();
                     maskedTextBox_numero.Clear();
-                    comboBox_tipo.SelectedIndex = -1 ;
+                    comboBox_tipo.Text="";
                 }
 
 
@@ -293,6 +294,7 @@ namespace Projeto_ar_condicionado
             {
                 txb_gmail.ReadOnly = true;
                 txb_gmail.BackColor = Color.LightGray;
+                txb_gmail.Clear();
             }
             else
             {
@@ -485,6 +487,11 @@ namespace Projeto_ar_condicionado
             {
                 ListarFuncionarios();
             }
+        }
+
+        private void tabPage_consulta_Click(object sender, EventArgs e)
+        {
+            txb_buscar_cadastro.Focus();
         }
         //teste
     }
